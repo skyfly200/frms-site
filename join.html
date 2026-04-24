@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-31DE6RRQK8"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-31DE6RRQK8');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us | Front Range Mycological Society</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .join-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://static.photos/nature/1200x630/46');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-link:hover {
+            color: #84cc16;
+            transition: all 0.3s ease;
+        }
+        .membership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-green-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <i data-feather="moon" class="text-amber-300"></i>
+                <span class="text-xl font-bold">FRMS</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link font-medium">Home</a>
+                <a href="about.html" class="nav-link font-medium">About</a>
+                <a href="join.html" class="nav-link font-medium text-amber-300">Join</a>
+                <a href="donate.html" class="nav-link font-medium">Donate</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-green-700 px-4 py-2" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-white hover:text-amber-300">Home</a>
+            <a href="about.html" class="block py-2 text-white hover:text-amber-300">About</a>
+            <a href="join.html" class="block py-2 text-white hover:text-amber-300">Join</a>
+            <a href="donate.html" class="block py-2 text-white hover:text-amber-300">Donate</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="join-hero text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Join Our Community</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Become part of Colorado's premier mycological society and connect with fellow fungi enthusiasts.</p>
+        </div>
+    </section>
+
+    <!-- Membership Benefits -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Membership Benefits</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-green-700 mb-4">
+                        <i data-feather="calendar" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Exclusive Events</h3>
+                    <p class="text-gray-700">Access to members-only forays, workshops, and special lectures throughout the year.</p>
+                </div>
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-green-700 mb-4">
+                        <i data-feather="book" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Educational Resources</h3>
+                    <p class="text-gray-700">Receive our quarterly newsletter and access to our member-only resource library.</p>
+                </div>
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-green-700 mb-4">
+                        <i data-feather="users" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Community</h3>
+                    <p class="text-gray-700">Connect with fellow mycophiles through our member directory and discussion forums.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Options -->
+    <section class="py-16 bg-amber-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Choose Your Membership</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-green-700 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Individual</h3>
+                        <p class="text-amber-300 text-xl font-bold">$35/year</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Access to all member events</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Quarterly newsletter</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Member resource access</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="block text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Now</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-green-800 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Family</h3>
+                        <p class="text-amber-300 text-xl font-bold">$50/year</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>All Individual benefits</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Covers 2 adults + children</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Family-friendly event discounts</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="block text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Now</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-green-700 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Student/Senior</h3>
+                        <p class="text-amber-300 text-xl font-bold">$25/year</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>All Individual benefits</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Discounted event rates</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
+                                <span>Special programming</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="block text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">What Our Members Say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-amber-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/401" alt="Member" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">James Wilson</h4>
+                            <p class="text-green-700 text-sm">Member since 2015</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"FRMS has transformed my understanding of fungi and connected me with an amazing community of knowledgeable and welcoming people."</p>
+                </div>
+                <div class="bg-amber-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/402" alt="Member" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Maria Garcia</h4>
+                            <p class="text-green-700 text-sm">Member since 2018</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The forays are my favorite part - I've discovered so many mushroom species I never knew existed right in our local forests!"</p>
+                </div>
+                <div class="bg-amber-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/403" alt="Member" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Thomas Kim</h4>
+                            <p class="text-green-700 text-sm">Member since 2020</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"As a beginner, I've found the workshops incredibly helpful. The experts are always willing to share their knowledge."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-green-800 text-white">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-6">Ready to Join?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Become part of our growing community today and start enjoying all the benefits of FRMS membership.</p>
+            <a href="#" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">Join Now</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <button class="w-full text-left p-4 bg-amber-50 hover:bg-amber-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="font-bold text-green-800">When does my membership expire?</h3>
+                        <i data-feather="chevron-down" class="transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 hidden">
+                        <p class="text-gray-700">Memberships are valid for one year from the date of purchase. You'll receive a renewal reminder via email two weeks before expiration.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <button class="w-full text-left p-4 bg-amber-50 hover:bg-amber-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="font-bold text-green-800">Can I attend events before becoming a member?</h3>
+                        <i data-feather="chevron-down" class="transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 hidden">
+                        <p class="text-gray-700">Yes! Many of our events are open to the public, though members receive discounted rates and priority registration for popular events.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <button class="w-full text-left p-4 bg-amber-50 hover:bg-amber-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="font-bold text-green-800">What if I'm a complete beginner?</h3>
+                        <i data-feather="chevron-down" class="transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 hidden">
+                        <p class="text-gray-700">FRMS welcomes all levels of experience! We offer beginner-friendly events and resources to help you start your mycological journey.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <button class="w-full text-left p-4 bg-amber-50 hover:bg-amber-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="font-bold text-green-800">How do I access member resources?</h3>
+                        <i data-feather="chevron-down" class="transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 hidden">
+                        <p class="text-gray-700">After joining, you'll receive login credentials for our member portal where you can access all exclusive resources and the member directory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FRMS</h3>
+                    <p class="mb-4">Exploring the fungal kingdom through education, research, and community.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-amber-300"><i data-feather="facebook"></i></a>
+                        <a href="#" class="hover:text-amber-300"><i data-feather="instagram"></i></a>
+                        <a href="#" class="hover:text-amber-300"><i data-feather="twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-amber-300">Home</a></li>
+                        <li><a href="about.html" class="hover:text-amber-300">About</a></li>
+                        <li><a href="join.html" class="hover:text-amber-300">Join</a></li>
+                        <li><a href="donate.html" class="hover:text-amber-300">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-amber-300">Mushroom Identification</a></li>
+                        <li><a href="#" class="hover:text-amber-300">Foray Guidelines</a></li>
+                        <li><a href="#" class="hover:text-amber-300">Recommended Reading</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <p class="mb-2"><i data-feather="mail" class="inline mr-2"></i> info@frontrangemyco.org</p>
+                    <p><i data-feather="map-pin" class="inline mr-2"></i> Boulder, Colorado</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-sm">
+                <p>© 2023 Front Range Mycological Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ toggle function
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Initialize animations and icons
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-31DE6RRQK8"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-31DE6RRQK8');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Range Mycological Society</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://static.photos/nature/1200x630/42');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-link:hover {
+            color: #84cc16;
+            transition: all 0.3s ease;
+        }
+        .mushroom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-green-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <i data-feather="moon" class="text-amber-300"></i>
+                <span class="text-xl font-bold">FRMS</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link font-medium">Home</a>
+                <a href="about.html" class="nav-link font-medium">About</a>
+                <a href="join.html" class="nav-link font-medium">Join</a>
+                <a href="donate.html" class="nav-link font-medium">Donate</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-green-700 px-4 py-2" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-white hover:text-amber-300">Home</a>
+            <a href="about.html" class="block py-2 text-white hover:text-amber-300">About</a>
+            <a href="join.html" class="block py-2 text-white hover:text-amber-300">Join</a>
+            <a href="donate.html" class="block py-2 text-white hover:text-amber-300">Donate</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Front Range Mycological Society</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Exploring the fascinating world of fungi through education, forays, and community building.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="join.html" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Us</a>
+                <a href="about.html" class="bg-transparent hover:bg-green-700 text-white font-bold py-3 px-6 border-2 border-white rounded-full transition duration-300">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-800" data-aos="fade-up">Upcoming Events</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-amber-50 rounded-lg shadow-md overflow-hidden mushroom-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="http://static.photos/nature/640x360/101" alt="Mushroom Foray" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Monthly Foray</h3>
+                        <p class="text-gray-600 mb-4">Join us for our monthly mushroom hunt in the beautiful Colorado wilderness.</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i data-feather="calendar" class="mr-2"></i>
+                            <span>June 15, 2023</span>
+                        </div>
+                        <a href="#" class="text-green-700 font-medium hover:text-green-800">Details →</a>
+                    </div>
+                </div>
+                <div class="bg-amber-50 rounded-lg shadow-md overflow-hidden mushroom-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="http://static.photos/education/640x360/102" alt="Lecture" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Fungal Ecology Lecture</h3>
+                        <p class="text-gray-600 mb-4">Dr. Jane Smith presents on the role of fungi in forest ecosystems.</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i data-feather="calendar" class="mr-2"></i>
+                            <span>June 22, 2023</span>
+                        </div>
+                        <a href="#" class="text-green-700 font-medium hover:text-green-800">Details →</a>
+                    </div>
+                </div>
+                <div class="bg-amber-50 rounded-lg shadow-md overflow-hidden mushroom-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="http://static.photos/food/640x360/103" alt="Cooking Class" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Mushroom Cooking Class</h3>
+                        <p class="text-gray-600 mb-4">Learn how to prepare delicious meals with wild mushrooms.</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i data-feather="calendar" class="mr-2"></i>
+                            <span>July 5, 2023</span>
+                        </div>
+                        <a href="#" class="text-green-700 font-medium hover:text-green-800">Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-green-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8" data-aos="fade-right">
+                    <img src="http://static.photos/nature/640x360/104" alt="Mushroom closeup" class="rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+                    <p class="text-lg mb-4">The Front Range Mycological Society is dedicated to the study and enjoyment of mushrooms and other fungi through educational programs, forays, and community events.</p>
+                    <p class="text-lg mb-6">We believe in fostering a deeper connection between people and the natural world through the fascinating lens of mycology.</p>
+                    <a href="about.html" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Learn About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-amber-100">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-green-800 mb-4">Stay Updated</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">Subscribe to our newsletter for event announcements, mushroom news, and community updates.</p>
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none">
+                <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-r-lg transition duration-300">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FRMS</h3>
+                    <p class="mb-4">Exploring the fungal kingdom through education, research, and community.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-amber-300"><i data-feather="facebook"></i></a>
+                        <a href="#" class="hover:text-amber-300"><i data-feather="instagram"></i></a>
+                        <a href="#" class="hover:text-amber-300"><i data-feather="twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-amber-300">Home</a></li>
+                        <li><a href="about.html" class="hover:text-amber-300">About</a></li>
+                        <li><a href="join.html" class="hover:text-amber-300">Join</a></li>
+                        <li><a href="donate.html" class="hover:text-amber-300">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-amber-300">Mushroom Identification</a></li>
+                        <li><a href="#" class="hover:text-amber-300">Foray Guidelines</a></li>
+                        <li><a href="#" class="hover:text-amber-300">Recommended Reading</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <p class="mb-2"><i data-feather="mail" class="inline mr-2"></i> info@frontrangemyco.org</p>
+                    <p><i data-feather="map-pin" class="inline mr-2"></i> Boulder, Colorado</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-sm">
+                <p>© 2023 Front Range Mycological Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize animations and icons
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>
