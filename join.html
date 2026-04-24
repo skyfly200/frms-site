@@ -19,6 +19,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAlLb4jrdj9PF2z8sMPt-DIK6emVyg2eozEXvsZqiajx-B8y5YBRMo0VwE9Rvkn_0B8AoK3Kgu5GZ2E0Y&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
     <style>
         .join-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://static.photos/nature/1200x630/46');
@@ -100,14 +101,14 @@
         </div>
     </section>
 
-    <!-- Membership Options -->
+    <!-- Membership -->
     <section class="py-16 bg-amber-100">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Choose Your Membership</h2>
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-700 text-white p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Individual</h3>
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Become a Member</h2>
+            <div class="max-w-sm mx-auto">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up">
+                    <div class="bg-green-800 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Annual Membership</h3>
                         <p class="text-amber-300 text-xl font-bold">$35/year</p>
                     </div>
                     <div class="p-6">
@@ -125,53 +126,7 @@
                                 <span>Member resource access</span>
                             </li>
                         </ul>
-                        <a href="#" class="block text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-green-800 text-white p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Family</h3>
-                        <p class="text-amber-300 text-xl font-bold">$50/year</p>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
-                                <span>All Individual benefits</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
-                                <span>Covers 2 adults + children</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
-                                <span>Family-friendly event discounts</span>
-                            </li>
-                        </ul>
-                        <a href="#" class="block text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg membership-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-green-700 text-white p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Student/Senior</h3>
-                        <p class="text-amber-300 text-xl font-bold">$25/year</p>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
-                                <span>All Individual benefits</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
-                                <span>Discounted event rates</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-green-600 mr-2 mt-1"></i>
-                                <span>Special programming</span>
-                            </li>
-                        </ul>
-                        <a href="#" class="block text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Join Now</a>
+                        <div id="paypal-container-Y8BSJ29VAJJJ8"></div>
                     </div>
                 </div>
             </div>
@@ -329,6 +284,11 @@
             once: true
         });
         feather.replace();
+    </script>
+    <script>
+        paypal.HostedButtons({
+            hostedButtonId: "Y8BSJ29VAJJJ8",
+        }).render("#paypal-container-Y8BSJ29VAJJJ8");
     </script>
 </body>
 </html>
