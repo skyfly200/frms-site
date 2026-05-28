@@ -97,7 +97,7 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-green-800" data-aos="fade-up">Upcoming Events</h2>
 
             <!-- Featured Event Card -->
-            <div class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
+            <div id="featured-event-card" class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
                 <div class="bg-green-800 text-white px-6 py-5">
                     <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Featured Event</p>
                     <h3 class="text-2xl font-bold">First Foray of the Season</h3>
@@ -209,6 +209,21 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
+
+        // Hide featured event card if Eventbrite widget doesn't render
+        (function() {
+            var container = document.getElementById('eventbrite-widget-container-1986269976970');
+            var card = document.getElementById('featured-event-card');
+            if (!container || !card) return;
+            var observer = new MutationObserver(function() {
+                if (container.querySelector('iframe')) observer.disconnect();
+            });
+            observer.observe(container, { childList: true });
+            setTimeout(function() {
+                observer.disconnect();
+                if (!container.querySelector('iframe')) card.style.display = 'none';
+            }, 5000);
+        })();
 
         // Initialize animations and icons
         AOS.init({
