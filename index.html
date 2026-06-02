@@ -125,16 +125,16 @@
             <h2 class="text-3xl font-bold text-center text-green-800 mb-4" data-aos="fade-up">Field Finds</h2>
             <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up">A glimpse into the fungi we've encountered across Colorado's Front Range.</p>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3" data-aos="fade-up">
-                <img src="images/mushroom-marasmius.jpg" alt="Marasmius on a stem" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-moss.jpg" alt="Tiny mushrooms in bright green moss" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-chanterelles.jpg" alt="Freshly foraged chanterelles" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-dewdrop.jpg" alt="Mushroom with water droplets on mossy log" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-inkcap.jpg" alt="Shaggy ink cap emerging" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-slimemold.jpg" alt="Pink slime mold on log" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-bonnets.jpg" alt="Tiny bonnet mushrooms on leaves" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-pine-branch.jpg" alt="Mushrooms on pine branch" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-pinecone.jpg" alt="Tiny mushrooms on a pine cone" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-2.jpg" alt="Morel mushrooms" class="w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-marasmius.jpg" alt="Marasmius on a stem" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-moss.jpg" alt="Tiny mushrooms in bright green moss" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-chanterelles.jpg" alt="Freshly foraged chanterelles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-dewdrop.jpg" alt="Mushroom with water droplets on mossy log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-inkcap.jpg" alt="Shaggy ink cap emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-slimemold.jpg" alt="Pink slime mold on log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-bonnets.jpg" alt="Tiny bonnet mushrooms on leaves" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-pine-branch.jpg" alt="Mushrooms on pine branch" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-pinecone.jpg" alt="Tiny mushrooms on a pine cone" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-2.jpg" alt="Morel mushrooms" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
             </div>
         </div>
     </section>
@@ -212,6 +212,14 @@
         </div>
     </footer>
 
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-amber-300 focus:outline-none" aria-label="Close">
+            <i data-feather="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+    </div>
+
     <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
     <script>
         window.EBWidgets.createWidget({
@@ -243,6 +251,29 @@
                 observer.disconnect();
                 if (!container.querySelector('iframe')) card.style.display = 'none';
             }, 5000);
+        })();
+
+        // Gallery lightbox
+        (function() {
+            var lb = document.getElementById('lightbox');
+            var lbImg = document.getElementById('lightbox-img');
+            document.querySelectorAll('.gallery-img').forEach(function(img) {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    lbImg.src = this.src;
+                    lbImg.alt = this.alt;
+                    lb.classList.remove('hidden');
+                    lb.classList.add('flex');
+                    feather.replace();
+                });
+            });
+            function closeLightbox() {
+                lb.classList.add('hidden');
+                lb.classList.remove('flex');
+            }
+            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+            lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
         })();
 
         // Initialize animations and icons
