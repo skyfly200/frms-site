@@ -217,6 +217,12 @@
                 <div>
                     <h4 class="font-bold mb-4">Contact</h4>
                     <p class="mb-2"><i data-feather="mail" class="inline mr-2"></i> frontrangemycologicalsociety@gmail.com</p>
+                    <p class="mb-2"><i data-feather="map-pin" class="inline mr-2"></i> Ward, Colorado, United States</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Nonprofit Status</h4>
+                    <p class="mb-2">Front Range Mycological Society is a nonprofit organization.</p>
+                    <p class="mb-2">EIN: 39-4447386</p>
                 </div>
             </div>
             <div class="border-t border-green-700 mt-8 pt-8 text-center text-sm">
@@ -228,32 +234,44 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        var menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                var menu = document.getElementById('mobile-menu');
+                if (menu) menu.classList.toggle('hidden');
+            });
+        }
 
         // FAQ toggle function
         function toggleFAQ(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
-            
+
             content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
         }
 
-        // Initialize animations and icons
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        feather.replace();
+        // Initialize animations and icons (guarded so a blocked CDN can't break the menu)
+        if (window.AOS) {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        }
+        if (window.feather) feather.replace();
     </script>
     <script>
-        paypal.HostedButtons({
-            hostedButtonId: "Y8BSJ29VAJJJ8",
-        }).render("#paypal-container-Y8BSJ29VAJJJ8");
+        // Render PayPal button (guarded so an unavailable/ad-blocked SDK can't break other scripts)
+        try {
+            if (window.paypal && paypal.HostedButtons) {
+                paypal.HostedButtons({
+                    hostedButtonId: "Y8BSJ29VAJJJ8",
+                }).render("#paypal-container-Y8BSJ29VAJJJ8");
+            }
+        } catch (e) {
+            /* PayPal SDK unavailable */
+        }
     </script>
 </body>
 </html>
