@@ -96,24 +96,28 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-800" data-aos="fade-up">Upcoming Events</h2>
 
-            <!-- Featured Event Card: Mushroom Foray -->
-            <div id="featured-event-card-2000199002059" class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
-                <div class="bg-green-800 text-white px-6 py-5">
-                    <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Featured Event</p>
-                    <h3 class="text-2xl font-bold">Mushroom Foray</h3>
-                </div>
-                <div class="p-6">
-                    <div class="space-y-3 mb-6">
-                        <p class="flex items-center text-gray-700">
-                            <i data-feather="calendar" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
-                            <span>Sunday, September 13, 2026</span>
-                        </p>
-                        <p class="flex items-center text-gray-700">
-                            <i data-feather="clock" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
-                            <span>12:00 PM (noon)</span>
-                        </p>
+            <!-- Events container: JS replaces the static fallback card below with
+                 live Eventbrite data when the eventbrite-events function responds. -->
+            <div id="events-container" data-aos="fade-up">
+                <!-- Static fallback (shown if the events API is unavailable) -->
+                <div class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-green-800 text-white px-6 py-5">
+                        <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Featured Event</p>
+                        <h3 class="text-2xl font-bold">Mushroom Foray</h3>
                     </div>
-                    <a href="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Get Tickets on Eventbrite →</a>
+                    <div class="p-6">
+                        <div class="space-y-3 mb-6">
+                            <p class="flex items-center text-gray-700">
+                                <i data-feather="calendar" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
+                                <span>Sunday, September 13, 2026</span>
+                            </p>
+                            <p class="flex items-center text-gray-700">
+                                <i data-feather="clock" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
+                                <span>12:00 PM (noon)</span>
+                            </p>
+                        </div>
+                        <a href="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Get Tickets on Eventbrite →</a>
+                    </div>
                 </div>
             </div>
 
@@ -283,6 +287,68 @@
             });
         }
         if (window.feather) feather.replace();
+    </script>
+
+    <!-- Populate Upcoming Events from the Eventbrite API (Netlify function).
+         Falls back to the static card already in #events-container on any error. -->
+    <script>
+        (function() {
+            var container = document.getElementById('events-container');
+            if (!container || !window.fetch) return;
+
+            function esc(s) {
+                return String(s == null ? '' : s)
+                    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            }
+
+            function detailRow(icon, text) {
+                if (!text) return '';
+                return '<p class="flex items-center text-gray-700">' +
+                    '<i data-feather="' + icon + '" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>' +
+                    '<span>' + esc(text) + '</span></p>';
+            }
+
+            function cardHtml(ev) {
+                var img = ev.image
+                    ? '<img src="' + esc(ev.image) + '" alt="' + esc(ev.name) + '" class="w-full h-56 object-cover">'
+                    : '';
+                var soldOut = ev.soldOut
+                    ? '<span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">Sold out</span>'
+                    : '';
+                var summary = ev.summary
+                    ? '<p class="text-gray-700 mb-6">' + esc(ev.summary) + '</p>'
+                    : '';
+                var cta = ev.url
+                    ? '<a href="' + esc(ev.url) + '" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Get Tickets on Eventbrite →</a>'
+                    : '';
+                return '<div class="max-w-2xl mx-auto mb-8 bg-amber-50 rounded-lg shadow-md overflow-hidden">' +
+                    '<div class="bg-green-800 text-white px-6 py-5">' +
+                        '<p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Upcoming Event</p>' +
+                        '<h3 class="text-2xl font-bold">' + esc(ev.name) + '</h3>' +
+                    '</div>' +
+                    img +
+                    '<div class="p-6">' +
+                        soldOut +
+                        '<div class="space-y-3 mb-4">' +
+                            detailRow('calendar', ev.date) +
+                            detailRow('clock', ev.time) +
+                            detailRow('map-pin', ev.venue) +
+                        '</div>' +
+                        summary +
+                        cta +
+                    '</div></div>';
+            }
+
+            fetch('/.netlify/functions/eventbrite-events')
+                .then(function(res) { return res.ok ? res.json() : null; })
+                .then(function(data) {
+                    if (!data || !data.events || !data.events.length) return; // keep fallback
+                    container.innerHTML = data.events.map(cardHtml).join('');
+                    if (window.feather) feather.replace();
+                })
+                .catch(function() { /* keep the static fallback card */ });
+        })();
     </script>
 </body>
 </html>
