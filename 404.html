@@ -22,6 +22,12 @@
             color: #84cc16;
             transition: all 0.3s ease;
         }
+        /* Keep nav visibility correct before the Tailwind CDN loads (prevents the menu flashing in then disappearing) */
+        .hidden { display: none; }
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
         .notfound-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/images/mushroom-slimemold.jpg');
             background-size: cover;

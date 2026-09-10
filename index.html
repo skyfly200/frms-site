@@ -20,6 +20,12 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
+        /* Keep nav visibility correct before the Tailwind CDN loads (prevents the menu flashing in then disappearing) */
+        .hidden { display: none; }
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
         .hero-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mushroom-oyster-orange.jpg');
             background-size: cover;
