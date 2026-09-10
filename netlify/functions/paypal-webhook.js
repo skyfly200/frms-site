@@ -82,6 +82,10 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: 'No payer email; acknowledged' };
   }
 
+  // Log the purchase descriptors so MEMBERSHIP_KEYWORD can be set precisely
+  // (this is how you learn what the membership button's item is named).
+  console.log('Completed purchase descriptors:', JSON.stringify(purchaseDescriptors(payer)));
+
   // Optional: only welcome membership purchases, not donations.
   const keyword = (process.env.MEMBERSHIP_KEYWORD || '').trim().toLowerCase();
   if (keyword && !purchaseMatchesKeyword(payer, keyword)) {
@@ -209,8 +213,9 @@ async function resolvePayer(resource, accessToken) {
   return direct; // may be null / lack an email
 }
 
-// Check the purchase's item/description fields against a membership keyword.
-function purchaseMatchesKeyword(payer, keyword) {
+// Gather the purchase's item name / description / id fields as an array, so we
+// can both log them (to discover what to match) and test a keyword against them.
+function purchaseDescriptors(payer) {
   const parts = [];
   const order = payer.order;
   if (order && Array.isArray(order.purchase_units)) {
@@ -233,6 +238,11 @@ function purchaseMatchesKeyword(payer, keyword) {
     if (resource.custom_id) parts.push(resource.custom_id);
     if (resource.invoice_id) parts.push(resource.invoice_id);
   }
-  return parts.join(' | ').toLowerCase().includes(keyword);
+  return parts;
+}
+
+// Check the purchase's item/description fields against a membership keyword.
+function purchaseMatchesKeyword(payer, keyword) {
+  return purchaseDescriptors(payer).join(' | ').toLowerCase().includes(keyword);
 }
 
