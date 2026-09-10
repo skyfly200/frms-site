@@ -49,6 +49,9 @@ exports.handler = async (event) => {
           status: e.status,
           organization_id: e.organization_id,
           organizer_id: e.organizer_id,
+          organizerName: e.organizer && e.organizer.name,
+          organizerUrl: e.organizer && e.organizer.url,
+          organizerWebsite: e.organizer && e.organizer.website,
         })),
       };
     } else {
@@ -152,7 +155,7 @@ async function fetchOrgEvents(orgId, token) {
 }
 
 async function fetchEvent(id, token) {
-  const res = await ebFetch(`${API_BASE}/events/${id}/?expand=venue,ticket_availability`, token);
+  const res = await ebFetch(`${API_BASE}/events/${id}/?expand=venue,ticket_availability,organizer`, token);
   if (!res.ok) {
     console.warn(`Could not fetch event ${id}: ${res.status}`);
     return null;
