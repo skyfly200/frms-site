@@ -141,7 +141,12 @@ async function fetchOrgEvents(orgId, token) {
     `${API_BASE}/organizations/${orgId}/events/` +
     `?status=live&order_by=start_asc&time_filter=current_future&expand=venue,ticket_availability`;
   const res = await ebFetch(url, token);
-  if (!res.ok) throw new Error(`org events failed: ${res.status} ${await res.text()}`);
+  if (!res.ok) {
+    // A token without access to this org returns 403/404 — treat as no events
+    // rather than failing the whole request.
+    console.warn(`org ${orgId} events lookup failed: ${res.status}`);
+    return [];
+  }
   const data = await res.json();
   return data.events || [];
 }
