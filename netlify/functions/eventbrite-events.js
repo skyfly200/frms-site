@@ -10,12 +10,11 @@
 //                                  (Account Settings > Developer > API keys)
 //                                  (EVENTBRITE_API_TOKEN also accepted)
 // Optional:
-//   EVENTBRITE_ORGANIZER_ID      - only return events by this organizer
-//                                  (each Eventbrite event carries an organizer_id)
-//   EVENTBRITE_ORGANIZATION_ID   - org whose events to list. If omitted, the
-//                                  first organization on the token is used.
+//   EVENTBRITE_ORGANIZATION_ID   - list events for this organization only. If
+//                                  omitted, ALL organizations on the token are
+//                                  searched and their live events combined.
 //   EVENTBRITE_EVENT_IDS         - comma-separated event ids to return instead
-//                                  of listing the organization's live events.
+//                                  of listing organization events.
 
 const API_BASE = 'https://www.eventbriteapi.com/v3';
 
@@ -41,27 +40,34 @@ exports.handler = async (event) => {
       rawEvents = rawEvents.filter(Boolean);
       debugInfo = { mode: 'event_ids', requestedIds: explicitIds, returnedCount: rawEvents.length };
     } else {
-      const orgId = process.env.EVENTBRITE_ORGANIZATION_ID || (await fetchFirstOrgId(token));
-      if (!orgId) return json(500, { error: 'Could not resolve an Eventbrite organization id' });
-      const orgEvents = await fetchOrgEvents(orgId, token);
+      // Search every organization on the token (an account can have more than
+      // one, and the events may not live under the first). No organizer filter.
+      const orgIds = process.env.EVENTBRITE_ORGANIZATION_ID
+        ? [process.env.EVENTBRITE_ORGANIZATION_ID.trim()]
+        : await fetchAllOrgIds(token);
+      if (!orgIds.length) {
+        return json(500, { error: 'No Eventbrite organizations found for this token' });
+      }
 
-      // Optionally narrow to a single organizer (events carry organizer_id).
-      const organizerId = (process.env.EVENTBRITE_ORGANIZER_ID || '').trim();
-      rawEvents = organizerId
-        ? orgEvents.filter((ev) => String(ev.organizer_id) === organizerId)
-        : orgEvents;
+      const perOrg = [];
+      rawEvents = [];
+      for (const orgId of orgIds) {
+        const orgEvents = await fetchOrgEvents(orgId, token);
+        perOrg.push({ organizationId: orgId, count: orgEvents.length });
+        rawEvents = rawEvents.concat(orgEvents);
+      }
 
       debugInfo = {
         mode: 'organization',
-        organizationId: orgId,
-        organizerIdFilter: organizerId || null,
-        eventsFromOrg: orgEvents.length,
-        eventsAfterOrganizerFilter: rawEvents.length,
-        organizerIdsSeen: [...new Set(orgEvents.map((e) => e.organizer_id))],
-        statusesSeen: [...new Set(orgEvents.map((e) => e.status))],
-        namesSeen: orgEvents.map((e) => e.name && e.name.text),
+        organizationIds: orgIds,
+        perOrgCounts: perOrg,
+        totalEvents: rawEvents.length,
+        statusesSeen: [...new Set(rawEvents.map((e) => e.status))],
+        namesSeen: rawEvents.map((e) => e.name && e.name.text),
       };
     }
+
+    console.log('eventbrite-events result:', JSON.stringify(debugInfo));
 
     const events = rawEvents.map(normalizeEvent).filter(Boolean);
 
@@ -85,12 +91,11 @@ exports.handler = async (event) => {
   }
 };
 
-async function fetchFirstOrgId(token) {
+async function fetchAllOrgIds(token) {
   const res = await ebFetch(`${API_BASE}/users/me/organizations/`, token);
   if (!res.ok) throw new Error(`organizations lookup failed: ${res.status} ${await res.text()}`);
   const data = await res.json();
-  const orgs = data.organizations || [];
-  return orgs.length ? orgs[0].id : null;
+  return (data.organizations || []).map((o) => o.id).filter(Boolean);
 }
 
 async function fetchOrgEvents(orgId, token) {
