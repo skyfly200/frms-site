@@ -284,7 +284,7 @@ function welcomeHtml(firstName) {
       <ul style="font-size:16px;line-height:1.7;padding-left:20px;">
         <li>Join our <a href="https://discord.gg/mKSuJ6w9zr" style="color:#166534;">Discord community</a> to chat, share finds, and hear about upcoming events</li>
         <li>Follow us on <a href="https://www.instagram.com/frontrange_mycologicalsociety" style="color:#166534;">Instagram</a> for fungi photos and announcements</li>
-        <li>Check <a href="https://frontrangemyco.org" style="color:#166534;">our website</a> for upcoming forays and talks</li>
+        <li>Check <a href="https://frontrangemycosociety.org" style="color:#166534;">our website</a> for upcoming forays and talks</li>
       </ul>
       <p style="font-size:16px;line-height:1.6;">If you have any questions, just reply to this email — we'd love to hear from you.</p>
       <p style="font-size:16px;line-height:1.6;">See you in the field!</p>
@@ -305,7 +305,7 @@ As a member, you'll be part of our forays, educational talks, and community even
 
 - Join our Discord community: https://discord.gg/mKSuJ6w9zr
 - Follow us on Instagram: https://www.instagram.com/frontrange_mycologicalsociety
-- Visit our website: https://frontrangemyco.org
+- Visit our website: https://frontrangemycosociety.org
 
 If you have any questions, just reply to this email.
 

@@ -49,6 +49,29 @@ completes through the PayPal button on the Join page.
    (Senders, Domains & Dedicated IPs). `FROM_EMAIL` must be verified.
 2. Create an API key (SMTP & API → API Keys) and set `BREVO_API_KEY`.
 
+### Authenticating `frontrangemycosociety.org` in Brevo (DNS)
+Set `FROM_EMAIL` to an address on the domain, e.g. `welcome@frontrangemycosociety.org`.
+For good deliverability, authenticate the domain in Brevo and add the DNS
+records it generates at whoever hosts DNS for `frontrangemycosociety.org`
+(registrar, Netlify DNS, Cloudflare, etc.):
+
+1. Brevo → **Senders, Domains & Dedicated IPs → Domains → Add a domain** →
+   enter `frontrangemycosociety.org`.
+2. Brevo shows records to add. They are account-specific — **copy the exact
+   values from Brevo**; the shapes are:
+   - **Domain verification** — a `TXT` record containing a `brevo-code:...` value.
+   - **DKIM** — a DKIM record (Brevo currently gives a `mail._domainkey`
+     `TXT`/CNAME with the key).
+   - **SPF** — ensure the domain's `TXT` SPF record includes Brevo, e.g.
+     `v=spf1 include:spf.brevo.com ~all` (merge into an existing SPF record if
+     you already have one — only one SPF record per domain).
+   - **DMARC** (recommended) — a `TXT` at `_dmarc.frontrangemycosociety.org`,
+     e.g. `v=DMARC1; p=none; rua=mailto:postmaster@frontrangemycosociety.org`.
+3. Save the records, then click **Verify/Authenticate** in Brevo (DNS can take
+   from minutes up to ~48h to propagate).
+4. Once the domain is authenticated, senders on it (like `FROM_EMAIL`) are
+   trusted — no per-address verification needed.
+
 ### Avoiding donor emails ⚠️
 PayPal fires this webhook for **every** completed payment on the account,
 including donations. To only welcome membership purchases, set
@@ -72,9 +95,17 @@ home page can render real event details.
 ### Environment variables
 | Variable | Required | Notes |
 | --- | --- | --- |
-| `EVENTBRITE_API_TOKEN` | ✅ | Eventbrite → Account Settings → Developer → API keys (Private token) |
-| `EVENTBRITE_ORGANIZATION_ID` | – | Which org's events to list. If omitted, the first org on the token is used. |
+| `EVENTBRITE_PRIVATE_TOKEN` | ✅ | Eventbrite → Account Settings → Developer → API keys (Private token). `EVENTBRITE_API_TOKEN` is also accepted. |
+| `EVENTBRITE_ORGANIZER_ID` | – | Only return events by this organizer. Each Eventbrite event carries an `organizer_id`; matching events are filtered client-side. |
+| `EVENTBRITE_ORGANIZATION_ID` | – | Which organization's events to list. If omitted, the first organization on the token is used. (Organization ≠ organizer.) |
 | `EVENTBRITE_EVENT_IDS` | – | Comma-separated event ids to return specific events instead of listing live org events. |
+
+> **Organizer vs. organization:** Eventbrite lists events per *organization* (your
+> account), and each event belongs to an *organizer* profile. This function
+> resolves your organization automatically from the token, then — if
+> `EVENTBRITE_ORGANIZER_ID` is set — keeps only that organizer's events. If no
+> events show up, also set `EVENTBRITE_ORGANIZATION_ID` (find it via
+> `GET /v3/users/me/organizations/` with your token).
 
 ### Response shape
 ```json

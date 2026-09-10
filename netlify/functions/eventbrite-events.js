@@ -6,9 +6,12 @@
 // (blocked by X-Frame-Options).
 //
 // Required environment variable:
-//   EVENTBRITE_API_TOKEN         - private token from Eventbrite
+//   EVENTBRITE_PRIVATE_TOKEN     - private token from Eventbrite
 //                                  (Account Settings > Developer > API keys)
+//                                  (EVENTBRITE_API_TOKEN also accepted)
 // Optional:
+//   EVENTBRITE_ORGANIZER_ID      - only return events by this organizer
+//                                  (each Eventbrite event carries an organizer_id)
 //   EVENTBRITE_ORGANIZATION_ID   - org whose events to list. If omitted, the
 //                                  first organization on the token is used.
 //   EVENTBRITE_EVENT_IDS         - comma-separated event ids to return instead
@@ -17,9 +20,9 @@
 const API_BASE = 'https://www.eventbriteapi.com/v3';
 
 exports.handler = async (event) => {
-  const token = process.env.EVENTBRITE_API_TOKEN;
+  const token = process.env.EVENTBRITE_PRIVATE_TOKEN || process.env.EVENTBRITE_API_TOKEN;
   if (!token) {
-    return json(500, { error: 'Missing EVENTBRITE_API_TOKEN' });
+    return json(500, { error: 'Missing EVENTBRITE_PRIVATE_TOKEN' });
   }
 
   try {
@@ -36,6 +39,12 @@ exports.handler = async (event) => {
       const orgId = process.env.EVENTBRITE_ORGANIZATION_ID || (await fetchFirstOrgId(token));
       if (!orgId) return json(500, { error: 'Could not resolve an Eventbrite organization id' });
       rawEvents = await fetchOrgEvents(orgId, token);
+
+      // Optionally narrow to a single organizer (events carry organizer_id).
+      const organizerId = (process.env.EVENTBRITE_ORGANIZER_ID || '').trim();
+      if (organizerId) {
+        rawEvents = rawEvents.filter((ev) => String(ev.organizer_id) === organizerId);
+      }
     }
 
     const events = rawEvents.map(normalizeEvent).filter(Boolean);
