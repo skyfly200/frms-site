@@ -19,7 +19,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAlLb4jrdj9PF2z8sMPt-DIK6emVyg2eozEXvsZqiajx-B8y5YBRMo0VwE9Rvkn_0B8AoK3Kgu5GZ2E0Y&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+    <script async src="https://www.paypal.com/sdk/js?client-id=BAAlLb4jrdj9PF2z8sMPt-DIK6emVyg2eozEXvsZqiajx-B8y5YBRMo0VwE9Rvkn_0B8AoK3Kgu5GZ2E0Y&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
     <style>
         .join-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mushroom-3.jpg');
@@ -50,8 +50,8 @@
                 <a href="join.html" class="nav-link font-medium text-amber-300">Join</a>
                 <a href="donate.html" class="nav-link font-medium">Donate</a>
             </div>
-            <button class="md:hidden focus:outline-none" id="menu-toggle">
-                <i data-feather="menu"></i>
+            <button class="md:hidden focus:outline-none" id="menu-toggle" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </div>
         <!-- Mobile Menu -->
@@ -262,16 +262,24 @@
         if (window.feather) feather.replace();
     </script>
     <script>
-        // Render PayPal button (guarded so an unavailable/ad-blocked SDK can't break other scripts)
-        try {
-            if (window.paypal && paypal.HostedButtons) {
-                paypal.HostedButtons({
-                    hostedButtonId: "Y8BSJ29VAJJJ8",
-                }).render("#paypal-container-Y8BSJ29VAJJJ8");
+        // Render PayPal button once the (async) SDK is available. Guarded and
+        // retried so a slow, unavailable, or ad-blocked SDK never blocks the
+        // page or throws.
+        (function renderPaypalButton(attemptsLeft) {
+            try {
+                if (window.paypal && paypal.HostedButtons) {
+                    paypal.HostedButtons({
+                        hostedButtonId: "Y8BSJ29VAJJJ8",
+                    }).render("#paypal-container-Y8BSJ29VAJJJ8");
+                    return;
+                }
+            } catch (e) {
+                return; /* SDK present but render failed; give up quietly */
             }
-        } catch (e) {
-            /* PayPal SDK unavailable */
-        }
+            if (attemptsLeft > 0) {
+                setTimeout(function () { renderPaypalButton(attemptsLeft - 1); }, 300);
+            }
+        })(20);
     </script>
 </body>
 </html>
