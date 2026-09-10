@@ -6,8 +6,8 @@
 //   FROM_EMAIL       (required) a verified Brevo sender, e.g. welcome@frontrangemycosociety.org
 //   FROM_NAME        (optional) sender display name
 //   REPLY_TO_EMAIL   (optional) reply-to address (defaults to FROM_EMAIL)
-//   WELCOME_BCC      (optional) comma-separated address(es) to BCC on every welcome
-//                    email, hidden from the member (WELCOME_CC also accepted)
+//   WELCOME_CC       (optional) comma-separated address(es) to CC (visible to the member)
+//   WELCOME_BCC      (optional) comma-separated address(es) to BCC (hidden from the member)
 //   SITE_URL         (optional) base URL for email images (default https://frontrangemycosociety.org)
 //   EVENTBRITE_ORG_URL (optional) organizer page the "Upcoming Events" button links to
 
@@ -28,12 +28,16 @@ async function sendWelcomeEmail(recipient) {
 
   const firstName = recipient.firstName || 'friend';
 
-  // BCC a copy to ourselves (hidden from the member). Accept either env name.
-  const bcc = (process.env.WELCOME_BCC || process.env.WELCOME_CC || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((email) => ({ email }));
+  // Copy a self-address on every welcome email: WELCOME_CC is visible to the
+  // member, WELCOME_BCC is hidden. Either or both may be set (comma-separated).
+  const parseList = (v) =>
+    (v || '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((email) => ({ email }));
+  const cc = parseList(process.env.WELCOME_CC);
+  const bcc = parseList(process.env.WELCOME_BCC);
 
   const payload = {
     sender: { email: fromEmail, name: fromName },
@@ -43,6 +47,7 @@ async function sendWelcomeEmail(recipient) {
     htmlContent: welcomeHtml(firstName),
     textContent: welcomeText(firstName),
   };
+  if (cc.length) payload.cc = cc;
   if (bcc.length) payload.bcc = bcc;
 
   const res = await fetch('https://api.brevo.com/v3/smtp/email', {
