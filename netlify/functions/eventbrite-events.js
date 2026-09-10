@@ -25,8 +25,12 @@ exports.handler = async (event) => {
     return json(500, { error: 'Missing EVENTBRITE_PRIVATE_TOKEN' });
   }
 
+  // Add ?debug=1 to inspect what the Eventbrite API returned (no secrets leaked).
+  const debug = !!(event.queryStringParameters && event.queryStringParameters.debug);
+
   try {
     let rawEvents;
+    let debugInfo = {};
     const explicitIds = (process.env.EVENTBRITE_EVENT_IDS || '')
       .split(',')
       .map((s) => s.trim())
@@ -35,19 +39,35 @@ exports.handler = async (event) => {
     if (explicitIds.length) {
       rawEvents = await Promise.all(explicitIds.map((id) => fetchEvent(id, token)));
       rawEvents = rawEvents.filter(Boolean);
+      debugInfo = { mode: 'event_ids', requestedIds: explicitIds, returnedCount: rawEvents.length };
     } else {
       const orgId = process.env.EVENTBRITE_ORGANIZATION_ID || (await fetchFirstOrgId(token));
       if (!orgId) return json(500, { error: 'Could not resolve an Eventbrite organization id' });
-      rawEvents = await fetchOrgEvents(orgId, token);
+      const orgEvents = await fetchOrgEvents(orgId, token);
 
       // Optionally narrow to a single organizer (events carry organizer_id).
       const organizerId = (process.env.EVENTBRITE_ORGANIZER_ID || '').trim();
-      if (organizerId) {
-        rawEvents = rawEvents.filter((ev) => String(ev.organizer_id) === organizerId);
-      }
+      rawEvents = organizerId
+        ? orgEvents.filter((ev) => String(ev.organizer_id) === organizerId)
+        : orgEvents;
+
+      debugInfo = {
+        mode: 'organization',
+        organizationId: orgId,
+        organizerIdFilter: organizerId || null,
+        eventsFromOrg: orgEvents.length,
+        eventsAfterOrganizerFilter: rawEvents.length,
+        organizerIdsSeen: [...new Set(orgEvents.map((e) => e.organizer_id))],
+        statusesSeen: [...new Set(orgEvents.map((e) => e.status))],
+        namesSeen: orgEvents.map((e) => e.name && e.name.text),
+      };
     }
 
     const events = rawEvents.map(normalizeEvent).filter(Boolean);
+
+    if (debug) {
+      return json(200, { debug: debugInfo, events });
+    }
 
     return {
       statusCode: 200,
