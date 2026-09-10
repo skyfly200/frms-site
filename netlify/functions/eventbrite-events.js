@@ -38,7 +38,19 @@ exports.handler = async (event) => {
     if (explicitIds.length) {
       rawEvents = await Promise.all(explicitIds.map((id) => fetchEvent(id, token)));
       rawEvents = rawEvents.filter(Boolean);
-      debugInfo = { mode: 'event_ids', requestedIds: explicitIds, returnedCount: rawEvents.length };
+      debugInfo = {
+        mode: 'event_ids',
+        requestedIds: explicitIds,
+        returnedCount: rawEvents.length,
+        // Surface the ids needed to switch to org auto-listing.
+        eventOrgInfo: rawEvents.map((e) => ({
+          id: e.id,
+          name: e.name && e.name.text,
+          status: e.status,
+          organization_id: e.organization_id,
+          organizer_id: e.organizer_id,
+        })),
+      };
     } else {
       // Search every organization on the token (an account can have more than
       // one, and the events may not live under the first). No organizer filter.
