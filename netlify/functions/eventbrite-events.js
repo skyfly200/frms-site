@@ -152,16 +152,35 @@ async function fetchOwnedEvents(token) {
 }
 
 async function fetchOrganizerEvents(organizerId, token) {
-  const url =
-    `${API_BASE}/organizers/${organizerId}/events/` +
-    `?status=live&order_by=start_asc&time_filter=current_future&expand=venue,ticket_availability`;
-  const res = await ebFetch(url, token);
-  if (!res.ok) {
-    console.warn(`organizer ${organizerId} events lookup failed: ${res.status}`);
-    return [];
+  // The /organizers/{id}/events/ endpoint rejects some params the
+  // /organizations/ one accepts (time_filter -> HTTP 400), so try progressively
+  // simpler queries and filter to upcoming live events client-side.
+  const queries = [
+    '?status=live&order_by=start_asc&expand=venue,ticket_availability',
+    '?status=live&order_by=start_asc',
+    '?order_by=start_asc',
+    '',
+  ];
+  for (const qs of queries) {
+    const res = await ebFetch(`${API_BASE}/organizers/${organizerId}/events/${qs}`, token);
+    console.log(`organizer ${organizerId} events "${qs || '(no params)'}" -> ${res.status}`);
+    if (res.ok) {
+      const data = await res.json();
+      return filterUpcomingLive(data.events || []);
+    }
+    if (res.status !== 400) break; // 400 -> try a simpler query; anything else won't improve
   }
-  const data = await res.json();
-  return data.events || [];
+  return [];
+}
+
+// Keep only published events that have not ended yet.
+function filterUpcomingLive(events) {
+  const now = Date.now();
+  return events.filter((e) => {
+    if (e.status && e.status !== 'live') return false;
+    var endish = (e.end && e.end.utc) || (e.start && e.start.utc);
+    return endish ? new Date(endish).getTime() >= now : true;
+  });
 }
 
 async function fetchOrgEvents(orgId, token) {
