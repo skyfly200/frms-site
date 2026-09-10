@@ -103,9 +103,16 @@
                     <h3 class="text-2xl font-bold">Mushroom Foray</h3>
                 </div>
                 <div class="p-6">
-                    <div id="eventbrite-widget-container-2000199002059"></div>
+                    <div class="w-full overflow-hidden rounded-lg border border-green-100 bg-white">
+                        <iframe
+                            src="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059"
+                            title="Mushroom Foray event details on Eventbrite"
+                            style="border: 0; width: 100%; height: 650px;"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                     <p class="text-center mt-4">
-                        <a href="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059" target="_blank" rel="noopener noreferrer" class="text-green-700 hover:text-green-800 font-medium">View on Eventbrite →</a>
+                        <a href="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">View full event &amp; get tickets on Eventbrite →</a>
                     </p>
                 </div>
             </div>
@@ -232,17 +239,6 @@
         <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
     </div>
 
-    <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
-    <script>
-        if (window.EBWidgets) {
-            window.EBWidgets.createWidget({
-                widgetType: 'checkout',
-                eventId: '2000199002059',
-                iframeContainerId: 'eventbrite-widget-container-2000199002059',
-                iframeContainerHeight: 425,
-            });
-        }
-    </script>
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
     <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
     <script>
@@ -254,26 +250,6 @@
                 if (menu) menu.classList.toggle('hidden');
             });
         }
-
-        // Hide an event card if its Eventbrite widget doesn't render
-        (function() {
-            var events = [
-                { container: 'eventbrite-widget-container-2000199002059', card: 'featured-event-card-2000199002059' }
-            ];
-            events.forEach(function(ev) {
-                var container = document.getElementById(ev.container);
-                var card = document.getElementById(ev.card);
-                if (!container || !card) return;
-                var observer = new MutationObserver(function() {
-                    if (container.querySelector('iframe')) observer.disconnect();
-                });
-                observer.observe(container, { childList: true });
-                setTimeout(function() {
-                    observer.disconnect();
-                    if (!container.querySelector('iframe')) card.style.display = 'none';
-                }, 5000);
-            });
-        })();
 
         // Gallery lightbox
         (function() {
