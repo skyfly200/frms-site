@@ -6,6 +6,7 @@
 //   FROM_EMAIL       (required) a verified Brevo sender, e.g. welcome@frontrangemycosociety.org
 //   FROM_NAME        (optional) sender display name
 //   REPLY_TO_EMAIL   (optional) reply-to address (defaults to FROM_EMAIL)
+//   WELCOME_CC       (optional) comma-separated address(es) to CC on every welcome email
 //   SITE_URL         (optional) base URL for email images (default https://frontrangemycosociety.org)
 //   EVENTBRITE_ORG_URL (optional) organizer page the "Upcoming Events" button links to
 
@@ -26,6 +27,22 @@ async function sendWelcomeEmail(recipient) {
 
   const firstName = recipient.firstName || 'friend';
 
+  const cc = (process.env.WELCOME_CC || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((email) => ({ email }));
+
+  const payload = {
+    sender: { email: fromEmail, name: fromName },
+    to: [{ email: recipient.email, name: recipient.name || undefined }],
+    replyTo: { email: replyTo, name: fromName },
+    subject: 'Welcome to the Front Range Mycological Society! 🍄',
+    htmlContent: welcomeHtml(firstName),
+    textContent: welcomeText(firstName),
+  };
+  if (cc.length) payload.cc = cc;
+
   const res = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
@@ -33,14 +50,7 @@ async function sendWelcomeEmail(recipient) {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({
-      sender: { email: fromEmail, name: fromName },
-      to: [{ email: recipient.email, name: recipient.name || undefined }],
-      replyTo: { email: replyTo, name: fromName },
-      subject: 'Welcome to the Front Range Mycological Society! 🍄',
-      htmlContent: welcomeHtml(firstName),
-      textContent: welcomeText(firstName),
-    }),
+    body: JSON.stringify(payload),
   });
   if (!res.ok) {
     throw new Error(`Brevo send failed: ${res.status} ${await res.text()}`);
