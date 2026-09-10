@@ -46,6 +46,7 @@
             <div class="hidden md:flex space-x-8">
                 <a href="index.html" class="nav-link font-medium">Home</a>
                 <a href="about.html" class="nav-link font-medium">About</a>
+                <a href="finds.html" class="nav-link font-medium">Finds</a>
                 <a href="join.html" class="nav-link font-medium">Join</a>
                 <a href="donate.html" class="nav-link font-medium">Donate</a>
             </div>
@@ -57,6 +58,7 @@
         <div class="md:hidden hidden bg-green-700 px-4 py-2" id="mobile-menu">
             <a href="index.html" class="block py-2 text-white hover:text-amber-300">Home</a>
             <a href="about.html" class="block py-2 text-white hover:text-amber-300">About</a>
+            <a href="finds.html" class="block py-2 text-white hover:text-amber-300">Finds</a>
             <a href="join.html" class="block py-2 text-white hover:text-amber-300">Join</a>
             <a href="donate.html" class="block py-2 text-white hover:text-amber-300">Donate</a>
         </div>
@@ -130,31 +132,6 @@
         </div>
     </section>
 
-    <!-- Field Finds Gallery -->
-    <section class="py-16 bg-amber-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-800 mb-4" data-aos="fade-up">Field Finds</h2>
-            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up">A glimpse into the fungi we've encountered across Colorado's Front Range.</p>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3" data-aos="fade-up">
-                <img src="images/mushroom-marasmius.jpg" alt="Marasmius on a stem" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-moss.jpg" alt="Tiny mushrooms in bright green moss" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-chanterelles.jpg" alt="Freshly foraged chanterelles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-dewdrop.jpg" alt="Mushroom with water droplets on mossy log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-inkcap.jpg" alt="Shaggy ink cap emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-slimemold.jpg" alt="Pink slime mold on log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-bonnets.jpg" alt="Tiny bonnet mushrooms on leaves" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-pine-branch.jpg" alt="Mushrooms on pine branch" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-pinecone.jpg" alt="Tiny mushrooms on a pine cone" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-morel-single.jpg" alt="Morel mushroom" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-lichen.jpg" alt="Lace lichen on forest floor" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-amanita-button.jpg" alt="Amanita muscaria button emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-russula2.jpg" alt="Russula mushrooms on forest floor" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-tiny-pine.jpg" alt="Tiny mushroom among pine needles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-tiny-dark.jpg" alt="Small mushroom emerging from leaf litter" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-            </div>
-        </div>
-    </section>
-
     <!-- Newsletter -->
     <section class="py-16 bg-amber-100">
         <div class="container mx-auto px-4 text-center" data-aos="fade-up">
@@ -213,6 +190,7 @@
                     <ul class="space-y-2">
                         <li><a href="index.html" class="hover:text-amber-300">Home</a></li>
                         <li><a href="about.html" class="hover:text-amber-300">About</a></li>
+                        <li><a href="finds.html" class="hover:text-amber-300">Finds</a></li>
                         <li><a href="join.html" class="hover:text-amber-300">Join</a></li>
                         <li><a href="donate.html" class="hover:text-amber-300">Donate</a></li>
                     </ul>
@@ -235,13 +213,6 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
-        <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-amber-300 focus:outline-none" aria-label="Close">
-            <i data-feather="x" class="w-8 h-8"></i>
-        </button>
-        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
-    </div>
 
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
     <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
@@ -254,29 +225,6 @@
                 if (menu) menu.classList.toggle('hidden');
             });
         }
-
-        // Gallery lightbox
-        (function() {
-            var lb = document.getElementById('lightbox');
-            var lbImg = document.getElementById('lightbox-img');
-            document.querySelectorAll('.gallery-img').forEach(function(img) {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', function() {
-                    lbImg.src = this.src;
-                    lbImg.alt = this.alt;
-                    lb.classList.remove('hidden');
-                    lb.classList.add('flex');
-                    feather.replace();
-                });
-            });
-            function closeLightbox() {
-                lb.classList.add('hidden');
-                lb.classList.remove('flex');
-            }
-            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-            lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
-        })();
 
         // Initialize animations and icons (guarded so a blocked CDN can't break the menu)
         if (window.AOS) {

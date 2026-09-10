@@ -12,7 +12,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome | Front Range Mycological Society</title>
+    <title>Field Finds | Front Range Mycological Society</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,19 +20,13 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        .welcome-hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('images/community-event.jpg');
+        .finds-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mushroom-chanterelles.jpg');
             background-size: cover;
-            /* Focus higher up the photo so members' faces are visible */
-            background-position: center 25%;
+            background-position: center;
         }
         .nav-link:hover {
             color: #84cc16;
-            transition: all 0.3s ease;
-        }
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
     </style>
@@ -47,7 +41,7 @@
             <div class="hidden md:flex space-x-8">
                 <a href="index.html" class="nav-link font-medium">Home</a>
                 <a href="about.html" class="nav-link font-medium">About</a>
-                <a href="finds.html" class="nav-link font-medium">Finds</a>
+                <a href="finds.html" class="nav-link font-medium text-amber-300">Finds</a>
                 <a href="join.html" class="nav-link font-medium">Join</a>
                 <a href="donate.html" class="nav-link font-medium">Donate</a>
             </div>
@@ -65,65 +59,58 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="welcome-hero text-white py-28 md:py-48">
+    <!-- Hero -->
+    <section class="finds-hero text-white py-20 md:py-28">
         <div class="container mx-auto px-4 text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Thank You for Joining! 🍄</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Your membership is confirmed.<br>We're delighted to welcome you to the Front Range Mycological Society.</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Field Finds</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Fungi we've encountered on forays across Colorado's Front Range.</p>
         </div>
     </section>
 
-    <!-- Welcome Message -->
+    <!-- iNaturalist -->
     <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl text-center" data-aos="fade-up">
+            <div class="text-green-700 mb-4 flex justify-center">
+                <i data-feather="map" class="w-10 h-10"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-green-800 mb-4">Explore Our Observations on iNaturalist</h2>
+            <p class="text-lg text-gray-700 mb-6">We document our finds as citizen-science observations, mapping the fungal biodiversity of the Front Range. Browse our project, add your own sightings, and help build a lasting record of Colorado's fungi.</p>
+            <a href="INATURALIST_GROUP_URL" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">View our iNaturalist Project →</a>
+        </div>
+    </section>
+
+    <!-- Field Finds Gallery -->
+    <section class="py-16 bg-amber-50">
         <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-green-800 mb-6">You're Part of the Community</h2>
-                <p class="text-lg text-gray-700 mb-4">By joining, you've become part of a growing community of foragers, naturalists, scientists, and the simply curious who share a deep fascination with fungi and the wild places of Colorado's Front Range.</p>
-                <p class="text-lg text-gray-700 mb-4">Your membership helps us host guided forays, educational talks, and hands-on workshops, and it supports our work in conservation and community science across the region. Whether you're identifying your very first mushroom or have spent years in the field, you'll find a welcoming place here to learn, share, and explore.</p>
-                <p class="text-lg text-gray-700">Keep an eye on your inbox: a welcome email with everything you need is on its way.</p>
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-4" data-aos="fade-up">Gallery</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up">Tap any photo to view it larger.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3" data-aos="fade-up">
+                <img src="images/mushroom-marasmius.jpg" alt="Marasmius on a stem" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-moss.jpg" alt="Tiny mushrooms in bright green moss" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-chanterelles.jpg" alt="Freshly foraged chanterelles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-dewdrop.jpg" alt="Mushroom with water droplets on mossy log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-inkcap.jpg" alt="Shaggy ink cap emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-slimemold.jpg" alt="Pink slime mold on log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-bonnets.jpg" alt="Tiny bonnet mushrooms on leaves" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-pine-branch.jpg" alt="Mushrooms on pine branch" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-pinecone.jpg" alt="Tiny mushrooms on a pine cone" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-morel-single.jpg" alt="Morel mushroom" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-lichen.jpg" alt="Lace lichen on forest floor" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-amanita-button.jpg" alt="Amanita muscaria button emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-russula2.jpg" alt="Russula mushrooms on forest floor" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-tiny-pine.jpg" alt="Tiny mushroom among pine needles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+                <img src="images/mushroom-tiny-dark.jpg" alt="Small mushroom emerging from leaf litter" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
             </div>
         </div>
     </section>
 
-    <!-- Next Steps -->
-    <section class="py-16 bg-amber-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Get Started</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <a href="https://www.eventbrite.com/o/front-range-mycological-society-120736224622" target="_blank" rel="noopener noreferrer" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="calendar" class="text-green-700"></i></div>
-                        <h3 class="text-xl font-bold text-green-800">Upcoming Events</h3>
-                    </div>
-                    <p class="text-gray-700">Browse our upcoming forays, talks, and workshops on Eventbrite and reserve your spot.</p>
-                </a>
-                <a href="https://discord.gg/mKSuJ6w9zr" target="_blank" rel="noopener noreferrer" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="message-circle" class="text-green-700"></i></div>
-                        <h3 class="text-xl font-bold text-green-800">Join our Discord</h3>
-                    </div>
-                    <p class="text-gray-700">Connect with fellow members, ask questions, and share your finds between events.</p>
-                </a>
-                <a href="https://www.instagram.com/frontrange_mycologicalsociety?igsh=MW9nNjVqNXRuZGVnNQ==" target="_blank" rel="noopener noreferrer" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="instagram" class="text-green-700"></i></div>
-                        <h3 class="text-xl font-bold text-green-800">Follow on Instagram</h3>
-                    </div>
-                    <p class="text-gray-700">See fungi photography, identification tips, and announcements from the society.</p>
-                </a>
-                <a href="about.html" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="compass" class="text-green-700"></i></div>
-                        <h3 class="text-xl font-bold text-green-800">Get to Know Us</h3>
-                    </div>
-                    <p class="text-gray-700">Learn more about our mission, our board, and the story behind FRMS.</p>
-                </a>
-            </div>
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="index.html" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Back to Home</a>
-            </div>
-        </div>
-    </section>
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-amber-300 focus:outline-none" aria-label="Close">
+            <i data-feather="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+    </div>
 
     <!-- Footer -->
     <footer class="bg-green-900 text-white py-12">
@@ -176,6 +163,29 @@
                 if (menu) menu.classList.toggle('hidden');
             });
         }
+
+        // Gallery lightbox
+        (function() {
+            var lb = document.getElementById('lightbox');
+            var lbImg = document.getElementById('lightbox-img');
+            document.querySelectorAll('.gallery-img').forEach(function(img) {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    lbImg.src = this.src;
+                    lbImg.alt = this.alt;
+                    lb.classList.remove('hidden');
+                    lb.classList.add('flex');
+                    if (window.feather) feather.replace();
+                });
+            });
+            function closeLightbox() {
+                lb.classList.add('hidden');
+                lb.classList.remove('flex');
+            }
+            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+            lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+        })();
 
         // Initialize animations and icons (guarded so a blocked CDN can't break the page)
         if (window.AOS) {
