@@ -96,10 +96,24 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-800" data-aos="fade-up">Upcoming Events</h2>
 
-            <!-- Featured Event Card -->
-            <div id="featured-event-card" class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
+            <!-- Featured Event Card: Mushroom Foray -->
+            <div id="featured-event-card-2000199002059" class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
                 <div class="bg-green-800 text-white px-6 py-5">
                     <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Featured Event</p>
+                    <h3 class="text-2xl font-bold">Mushroom Foray</h3>
+                </div>
+                <div class="p-6">
+                    <div id="eventbrite-widget-container-2000199002059"></div>
+                    <p class="text-center mt-4">
+                        <a href="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059" target="_blank" rel="noopener noreferrer" class="text-green-700 hover:text-green-800 font-medium">View on Eventbrite →</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Event Card: First Foray of the Season -->
+            <div id="featured-event-card-1986269976970" class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
+                <div class="bg-green-800 text-white px-6 py-5">
+                    <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Upcoming Event</p>
                     <h3 class="text-2xl font-bold">First Foray of the Season</h3>
                 </div>
                 <div class="p-6">
@@ -234,35 +248,52 @@
 
     <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
     <script>
-        window.EBWidgets.createWidget({
-            widgetType: 'checkout',
-            eventId: '1986269976970',
-            iframeContainerId: 'eventbrite-widget-container-1986269976970',
-            iframeContainerHeight: 425,
-        });
+        if (window.EBWidgets) {
+            window.EBWidgets.createWidget({
+                widgetType: 'checkout',
+                eventId: '2000199002059',
+                iframeContainerId: 'eventbrite-widget-container-2000199002059',
+                iframeContainerHeight: 425,
+            });
+            window.EBWidgets.createWidget({
+                widgetType: 'checkout',
+                eventId: '1986269976970',
+                iframeContainerId: 'eventbrite-widget-container-1986269976970',
+                iframeContainerHeight: 425,
+            });
+        }
     </script>
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
     <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
     <script>
         // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Hide featured event card if Eventbrite widget doesn't render
-        (function() {
-            var container = document.getElementById('eventbrite-widget-container-1986269976970');
-            var card = document.getElementById('featured-event-card');
-            if (!container || !card) return;
-            var observer = new MutationObserver(function() {
-                if (container.querySelector('iframe')) observer.disconnect();
+        var menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                var menu = document.getElementById('mobile-menu');
+                if (menu) menu.classList.toggle('hidden');
             });
-            observer.observe(container, { childList: true });
-            setTimeout(function() {
-                observer.disconnect();
-                if (!container.querySelector('iframe')) card.style.display = 'none';
-            }, 5000);
+        }
+
+        // Hide an event card if its Eventbrite widget doesn't render
+        (function() {
+            var events = [
+                { container: 'eventbrite-widget-container-2000199002059', card: 'featured-event-card-2000199002059' },
+                { container: 'eventbrite-widget-container-1986269976970', card: 'featured-event-card-1986269976970' }
+            ];
+            events.forEach(function(ev) {
+                var container = document.getElementById(ev.container);
+                var card = document.getElementById(ev.card);
+                if (!container || !card) return;
+                var observer = new MutationObserver(function() {
+                    if (container.querySelector('iframe')) observer.disconnect();
+                });
+                observer.observe(container, { childList: true });
+                setTimeout(function() {
+                    observer.disconnect();
+                    if (!container.querySelector('iframe')) card.style.display = 'none';
+                }, 5000);
+            });
         })();
 
         // Gallery lightbox
@@ -288,13 +319,15 @@
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
         })();
 
-        // Initialize animations and icons
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        feather.replace();
+        // Initialize animations and icons (guarded so a blocked CDN can't break the menu)
+        if (window.AOS) {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        }
+        if (window.feather) feather.replace();
     </script>
 </body>
 </html>
