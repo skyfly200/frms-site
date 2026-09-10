@@ -9,12 +9,14 @@
 //   EVENTBRITE_PRIVATE_TOKEN     - private token from Eventbrite
 //                                  (Account Settings > Developer > API keys)
 //                                  (EVENTBRITE_API_TOKEN also accepted)
-// Optional:
+// Optional (results from all configured sources are merged + de-duplicated):
+//   EVENTBRITE_ORGANIZER_ID      - also list this organizer's events
+//                                  (/organizers/{id}/events/).
 //   EVENTBRITE_ORGANIZATION_ID   - list events for this organization only. If
 //                                  omitted, ALL organizations on the token are
 //                                  searched and their live events combined.
 //   EVENTBRITE_EVENT_IDS         - comma-separated event ids to return instead
-//                                  of listing organization events.
+//                                  of listing organization/organizer events.
 
 const API_BASE = 'https://www.eventbriteapi.com/v3';
 
@@ -56,8 +58,9 @@ exports.handler = async (event) => {
       };
     } else {
       // Collect from multiple sources and de-duplicate by event id:
-      //   1. the account's owned events (works regardless of organization), and
-      //   2. each organization's events on the token.
+      //   1. the account's owned events (works regardless of organization),
+      //   2. a specific organizer's events (EVENTBRITE_ORGANIZER_ID), and
+      //   3. each organization's events on the token.
       const collected = [];
       const seen = new Set();
       const add = (evs) => {
@@ -71,6 +74,13 @@ exports.handler = async (event) => {
 
       const owned = await fetchOwnedEvents(token);
       add(owned);
+
+      const organizerId = (process.env.EVENTBRITE_ORGANIZER_ID || '').trim();
+      let organizerEvents = [];
+      if (organizerId) {
+        organizerEvents = await fetchOrganizerEvents(organizerId, token);
+        add(organizerEvents);
+      }
 
       const orgIds = process.env.EVENTBRITE_ORGANIZATION_ID
         ? [process.env.EVENTBRITE_ORGANIZATION_ID.trim()]
@@ -87,6 +97,8 @@ exports.handler = async (event) => {
       debugInfo = {
         mode: 'listing',
         ownedCount: owned.length,
+        organizerId: organizerId || null,
+        organizerEventCount: organizerEvents.length,
         organizationIds: orgIds,
         perOrgCounts: perOrg,
         totalUniqueEvents: rawEvents.length,
@@ -133,6 +145,19 @@ async function fetchOwnedEvents(token) {
   const res = await ebFetch(url, token);
   if (!res.ok) {
     console.warn(`owned_events lookup failed: ${res.status}`);
+    return [];
+  }
+  const data = await res.json();
+  return data.events || [];
+}
+
+async function fetchOrganizerEvents(organizerId, token) {
+  const url =
+    `${API_BASE}/organizers/${organizerId}/events/` +
+    `?status=live&order_by=start_asc&time_filter=current_future&expand=venue,ticket_availability`;
+  const res = await ebFetch(url, token);
+  if (!res.ok) {
+    console.warn(`organizer ${organizerId} events lookup failed: ${res.status}`);
     return [];
   }
   const data = await res.json();
