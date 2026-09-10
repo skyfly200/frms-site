@@ -1,0 +1,9 @@
+{
+  "name": "frms-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Front Range Mycological Society website and Netlify serverless functions",
+  "engines": {
+    "node": ">=18"
+  }
+}

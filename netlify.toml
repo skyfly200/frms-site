@@ -1,0 +1,21 @@
+# Netlify configuration for the FRMS static site + serverless functions.
+
+[build]
+  # Static site: no build step, publish the repo root as-is.
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Friendlier URLs for the functions (optional; the /.netlify/functions/*
+# paths keep working regardless).
+[[redirects]]
+  from = "/api/paypal-webhook"
+  to = "/.netlify/functions/paypal-webhook"
+  status = 200
+
+[[redirects]]
+  from = "/api/eventbrite-events"
+  to = "/.netlify/functions/eventbrite-events"
+  status = 200
