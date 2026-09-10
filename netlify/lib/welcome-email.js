@@ -66,12 +66,14 @@ function welcomeHtml(firstName) {
     <!-- Body -->
     <div style="background-color:#ffffff;padding:28px 24px;border:1px solid #dcfce7;border-top:none;">
       <p style="font-size:16px;line-height:1.6;margin-top:0;">Hi ${safeName},</p>
-      <p style="font-size:16px;line-height:1.6;">Thank you for joining the <strong>Front Range Mycological Society</strong>! We're thrilled to have you as part of our community of fungi enthusiasts across Colorado's Front Range.</p>
-      <p style="font-size:16px;line-height:1.6;">As a member, you'll be part of our forays, educational talks, and community events. Here's how to get connected:</p>
+      <p style="font-size:16px;line-height:1.6;">Welcome to the <strong>Front Range Mycological Society</strong>, and thank you for becoming a member. We're genuinely delighted to have you with us. By joining, you've become part of a growing community of foragers, naturalists, scientists, and the simply curious who share a deep fascination with fungi and the wild places of Colorado's Front Range.</p>
+      <p style="font-size:16px;line-height:1.6;">Your membership helps us host guided forays, educational talks, and hands-on workshops, and it supports our work in conservation and community science across the region. Whether you're identifying your very first mushroom or have spent years in the field, you'll find a welcoming place here to learn, share, and explore alongside fellow enthusiasts.</p>
+      <p style="font-size:16px;line-height:1.6;">Here are a few ways to dive in and make the most of your membership:</p>
       <ul style="font-size:16px;line-height:1.7;padding-left:20px;">
-        <li>Join our <a href="https://discord.gg/mKSuJ6w9zr" style="color:#166534;">Discord community</a> to chat, share finds, and hear about upcoming events</li>
-        <li>Follow us on <a href="https://www.instagram.com/frontrange_mycologicalsociety" style="color:#166534;">Instagram</a> for fungi photos and announcements</li>
-        <li>Check <a href="${SITE_URL}" style="color:#166534;">our website</a> for upcoming forays and talks</li>
+        <li>Browse our <a href="${EVENTBRITE_ORG_URL}" style="color:#166534;">upcoming forays and events</a> and reserve your spot</li>
+        <li>Join our <a href="https://discord.gg/mKSuJ6w9zr" style="color:#166534;">Discord community</a> to ask questions, share your finds, and connect between events</li>
+        <li>Follow us on <a href="https://www.instagram.com/frontrange_mycologicalsociety" style="color:#166534;">Instagram</a> for fungi photography, identification tips, and announcements</li>
+        <li>Visit <a href="${SITE_URL}" style="color:#166534;">our website</a> to learn more about the society and what's ahead</li>
       </ul>
 
       <!-- Eventbrite events button -->
@@ -83,9 +85,9 @@ function welcomeHtml(firstName) {
         </tr>
       </table>
 
-      <p style="font-size:16px;line-height:1.6;">If you have any questions, just reply to this email. We'd love to hear from you.</p>
-      <p style="font-size:16px;line-height:1.6;">See you in the field!</p>
-      <p style="font-size:16px;line-height:1.6;margin-bottom:0;">The FRMS Team</p>
+      <p style="font-size:16px;line-height:1.6;">If you ever have a question, an idea, or just want to say hello, simply reply to this email. We read every message and would love to hear what drew you to the world of fungi.</p>
+      <p style="font-size:16px;line-height:1.6;">We can't wait to see you out on the trail. Until then, keep looking down.</p>
+      <p style="font-size:16px;line-height:1.6;margin-bottom:0;">Warmly,<br>The Front Range Mycological Society</p>
     </div>
 
     <!-- Photo row -->
@@ -106,19 +108,23 @@ function welcomeHtml(firstName) {
 function welcomeText(firstName) {
   return `Hi ${firstName},
 
-Thank you for joining the Front Range Mycological Society! We're thrilled to have you as part of our community of fungi enthusiasts across Colorado's Front Range.
+Welcome to the Front Range Mycological Society, and thank you for becoming a member. We're genuinely delighted to have you with us. By joining, you've become part of a growing community of foragers, naturalists, scientists, and the simply curious who share a deep fascination with fungi and the wild places of Colorado's Front Range.
 
-As a member, you'll be part of our forays, educational talks, and community events. Here's how to get connected:
+Your membership helps us host guided forays, educational talks, and hands-on workshops, and it supports our work in conservation and community science across the region. Whether you're identifying your very first mushroom or have spent years in the field, you'll find a welcoming place here to learn, share, and explore alongside fellow enthusiasts.
 
-- See upcoming events and get tickets: ${EVENTBRITE_ORG_URL}
-- Join our Discord community: https://discord.gg/mKSuJ6w9zr
-- Follow us on Instagram: https://www.instagram.com/frontrange_mycologicalsociety
-- Visit our website: ${SITE_URL}
+Here are a few ways to dive in and make the most of your membership:
 
-If you have any questions, just reply to this email. We'd love to hear from you.
+- Browse our upcoming forays and events and reserve your spot: ${EVENTBRITE_ORG_URL}
+- Join our Discord community to ask questions and share your finds: https://discord.gg/mKSuJ6w9zr
+- Follow us on Instagram for fungi photography and tips: https://www.instagram.com/frontrange_mycologicalsociety
+- Visit our website to learn more about the society: ${SITE_URL}
 
-See you in the field!
-The FRMS Team
+If you ever have a question, an idea, or just want to say hello, simply reply to this email. We read every message and would love to hear what drew you to the world of fungi.
+
+We can't wait to see you out on the trail. Until then, keep looking down.
+
+Warmly,
+The Front Range Mycological Society
 
 Front Range Mycological Society, Ward, Colorado. A nonprofit organization (EIN 39-4447386)`;
 }
