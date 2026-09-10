@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-31DE6RRQK8"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-31DE6RRQK8');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Front Range Mycological Society</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .welcome-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('images/community-event.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-link:hover {
+            color: #84cc16;
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-green-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="images/logo.png" alt="FRMS" class="h-10 w-10 rounded-full">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link font-medium">Home</a>
+                <a href="about.html" class="nav-link font-medium">About</a>
+                <a href="join.html" class="nav-link font-medium">Join</a>
+                <a href="donate.html" class="nav-link font-medium">Donate</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="menu-toggle" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-green-700 px-4 py-2" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-white hover:text-amber-300">Home</a>
+            <a href="about.html" class="block py-2 text-white hover:text-amber-300">About</a>
+            <a href="join.html" class="block py-2 text-white hover:text-amber-300">Join</a>
+            <a href="donate.html" class="block py-2 text-white hover:text-amber-300">Donate</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="welcome-hero text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <p class="text-amber-300 font-semibold uppercase tracking-wider mb-3">Welcome to the Society</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Thank You for Joining! 🍄</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Your membership is confirmed. We're delighted to welcome you to the Front Range Mycological Society.</p>
+        </div>
+    </section>
+
+    <!-- Welcome Message -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-green-800 mb-6">You're Part of the Community</h2>
+                <p class="text-lg text-gray-700 mb-4">By joining, you've become part of a growing community of foragers, naturalists, scientists, and the simply curious who share a deep fascination with fungi and the wild places of Colorado's Front Range.</p>
+                <p class="text-lg text-gray-700 mb-4">Your membership helps us host guided forays, educational talks, and hands-on workshops, and it supports our work in conservation and community science across the region. Whether you're identifying your very first mushroom or have spent years in the field, you'll find a welcoming place here to learn, share, and explore.</p>
+                <p class="text-lg text-gray-700">Keep an eye on your inbox: a welcome email with everything you need is on its way.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="py-16 bg-amber-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12" data-aos="fade-up">Get Started</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <a href="https://www.eventbrite.com/o/front-range-mycological-society-120736224622" target="_blank" rel="noopener noreferrer" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="calendar" class="text-green-700"></i></div>
+                        <h3 class="text-xl font-bold text-green-800">Upcoming Events</h3>
+                    </div>
+                    <p class="text-gray-700">Browse our upcoming forays, talks, and workshops on Eventbrite and reserve your spot.</p>
+                </a>
+                <a href="https://discord.gg/mKSuJ6w9zr" target="_blank" rel="noopener noreferrer" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="message-circle" class="text-green-700"></i></div>
+                        <h3 class="text-xl font-bold text-green-800">Join our Discord</h3>
+                    </div>
+                    <p class="text-gray-700">Connect with fellow members, ask questions, and share your finds between events.</p>
+                </a>
+                <a href="https://www.instagram.com/frontrange_mycologicalsociety?igsh=MW9nNjVqNXRuZGVnNQ==" target="_blank" rel="noopener noreferrer" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="instagram" class="text-green-700"></i></div>
+                        <h3 class="text-xl font-bold text-green-800">Follow on Instagram</h3>
+                    </div>
+                    <p class="text-gray-700">See fungi photography, identification tips, and announcements from the society.</p>
+                </a>
+                <a href="about.html" class="step-card bg-white rounded-lg shadow-md p-6 block" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-3 rounded-full mr-4"><i data-feather="compass" class="text-green-700"></i></div>
+                        <h3 class="text-xl font-bold text-green-800">Get to Know Us</h3>
+                    </div>
+                    <p class="text-gray-700">Learn more about our mission, our board, and the story behind FRMS.</p>
+                </a>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="index.html" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FRMS</h3>
+                    <p class="mb-4">Exploring the fungal kingdom through education, research, and community.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/frontrange_mycologicalsociety?igsh=MW9nNjVqNXRuZGVnNQ==" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300"><i data-feather="instagram"></i></a>
+                        <a href="https://discord.gg/mKSuJ6w9zr" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300" title="Discord">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.088.119 18.12.142 18.14a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-amber-300">Home</a></li>
+                        <li><a href="about.html" class="hover:text-amber-300">About</a></li>
+                        <li><a href="join.html" class="hover:text-amber-300">Join</a></li>
+                        <li><a href="donate.html" class="hover:text-amber-300">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <p class="mb-2"><i data-feather="mail" class="inline mr-2"></i> frontrangemycologicalsociety@gmail.com</p>
+                    <p class="mb-2"><i data-feather="map-pin" class="inline mr-2"></i> Ward, Colorado, United States</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Nonprofit Status</h4>
+                    <p class="mb-2">Front Range Mycological Society is a nonprofit organization.</p>
+                    <p class="mb-2">EIN: 39-4447386</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-sm">
+                <p>© 2025 Front Range Mycological Society. All rights reserved.</p>
+                <p class="mt-2 text-green-400">Site designed by <a href="https://skylerfly.com/" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 underline">Skyler Fly-Wilson</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        var menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                var menu = document.getElementById('mobile-menu');
+                if (menu) menu.classList.toggle('hidden');
+            });
+        }
+
+        // Initialize animations and icons (guarded so a blocked CDN can't break the page)
+        if (window.AOS) {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        }
+        if (window.feather) feather.replace();
+    </script>
+</body>
+</html>
