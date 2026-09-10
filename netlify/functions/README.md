@@ -33,7 +33,7 @@ completes through the PayPal button on the Join page.
 | `FROM_EMAIL` | ✅ | A **verified** Brevo sender on your domain, e.g. `hello@yourdomain.org` |
 | `FROM_NAME` | – | Sender name (default: `Front Range Mycological Society`) |
 | `REPLY_TO_EMAIL` | – | Reply-to (default: `FROM_EMAIL`) |
-| `WELCOME_CC` | – | Comma-separated address(es) to CC on every welcome email (e.g. your own inbox) |
+| `WELCOME_BCC` | – | Comma-separated address(es) to BCC on every welcome email, hidden from the member (e.g. your own inbox). `WELCOME_CC` is also accepted as an alias. |
 | `PAYPAL_API_BASE` | – | `https://api-m.paypal.com` (live, default) or `https://api-m.sandbox.paypal.com` |
 | `MEMBERSHIP_KEYWORD` | – | See "Avoiding donor emails" below |
 

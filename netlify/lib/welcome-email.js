@@ -6,7 +6,8 @@
 //   FROM_EMAIL       (required) a verified Brevo sender, e.g. welcome@frontrangemycosociety.org
 //   FROM_NAME        (optional) sender display name
 //   REPLY_TO_EMAIL   (optional) reply-to address (defaults to FROM_EMAIL)
-//   WELCOME_CC       (optional) comma-separated address(es) to CC on every welcome email
+//   WELCOME_BCC      (optional) comma-separated address(es) to BCC on every welcome
+//                    email, hidden from the member (WELCOME_CC also accepted)
 //   SITE_URL         (optional) base URL for email images (default https://frontrangemycosociety.org)
 //   EVENTBRITE_ORG_URL (optional) organizer page the "Upcoming Events" button links to
 
@@ -27,7 +28,8 @@ async function sendWelcomeEmail(recipient) {
 
   const firstName = recipient.firstName || 'friend';
 
-  const cc = (process.env.WELCOME_CC || '')
+  // BCC a copy to ourselves (hidden from the member). Accept either env name.
+  const bcc = (process.env.WELCOME_BCC || process.env.WELCOME_CC || '')
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean)
@@ -41,7 +43,7 @@ async function sendWelcomeEmail(recipient) {
     htmlContent: welcomeHtml(firstName),
     textContent: welcomeText(firstName),
   };
-  if (cc.length) payload.cc = cc;
+  if (bcc.length) payload.bcc = bcc;
 
   const res = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
