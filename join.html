@@ -21,6 +21,12 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script async src="https://www.paypal.com/sdk/js?client-id=BAAlLb4jrdj9PF2z8sMPt-DIK6emVyg2eozEXvsZqiajx-B8y5YBRMo0VwE9Rvkn_0B8AoK3Kgu5GZ2E0Y&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
     <style>
+        /* Keep nav visibility correct before the Tailwind CDN loads (prevents the menu flashing in then disappearing) */
+        .hidden { display: none; }
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
         .join-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mushroom-3.jpg');
             background-size: cover;
