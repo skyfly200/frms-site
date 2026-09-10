@@ -52,28 +52,41 @@ exports.handler = async (event) => {
         })),
       };
     } else {
-      // Search every organization on the token (an account can have more than
-      // one, and the events may not live under the first). No organizer filter.
+      // Collect from multiple sources and de-duplicate by event id:
+      //   1. the account's owned events (works regardless of organization), and
+      //   2. each organization's events on the token.
+      const collected = [];
+      const seen = new Set();
+      const add = (evs) => {
+        for (const e of evs) {
+          if (e && e.id && !seen.has(e.id)) {
+            seen.add(e.id);
+            collected.push(e);
+          }
+        }
+      };
+
+      const owned = await fetchOwnedEvents(token);
+      add(owned);
+
       const orgIds = process.env.EVENTBRITE_ORGANIZATION_ID
         ? [process.env.EVENTBRITE_ORGANIZATION_ID.trim()]
         : await fetchAllOrgIds(token);
-      if (!orgIds.length) {
-        return json(500, { error: 'No Eventbrite organizations found for this token' });
-      }
-
       const perOrg = [];
-      rawEvents = [];
       for (const orgId of orgIds) {
         const orgEvents = await fetchOrgEvents(orgId, token);
         perOrg.push({ organizationId: orgId, count: orgEvents.length });
-        rawEvents = rawEvents.concat(orgEvents);
+        add(orgEvents);
       }
 
+      rawEvents = collected;
+
       debugInfo = {
-        mode: 'organization',
+        mode: 'listing',
+        ownedCount: owned.length,
         organizationIds: orgIds,
         perOrgCounts: perOrg,
-        totalEvents: rawEvents.length,
+        totalUniqueEvents: rawEvents.length,
         statusesSeen: [...new Set(rawEvents.map((e) => e.status))],
         namesSeen: rawEvents.map((e) => e.name && e.name.text),
       };
@@ -108,6 +121,19 @@ async function fetchAllOrgIds(token) {
   if (!res.ok) throw new Error(`organizations lookup failed: ${res.status} ${await res.text()}`);
   const data = await res.json();
   return (data.organizations || []).map((o) => o.id).filter(Boolean);
+}
+
+async function fetchOwnedEvents(token) {
+  const url =
+    `${API_BASE}/users/me/owned_events/` +
+    `?status=live&order_by=start_asc&time_filter=current_future&expand=venue,ticket_availability`;
+  const res = await ebFetch(url, token);
+  if (!res.ok) {
+    console.warn(`owned_events lookup failed: ${res.status}`);
+    return [];
+  }
+  const data = await res.json();
+  return data.events || [];
 }
 
 async function fetchOrgEvents(orgId, token) {
