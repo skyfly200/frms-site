@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 400" width="512" height="400" role="img" aria-label="Nexstrata">
+  <title>Nexstrata</title>
+  <defs>
+    <radialGradient id="nxs-bg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+
+    <filter id="nxs-ray-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <linearGradient id="nxs-p1-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/><stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="nxs-p1-right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cbd5e1"/><stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="nxs-p2-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cbd5e1"/><stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="nxs-p2-right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/><stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="nxs-p3-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/><stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="nxs-p3-right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/><stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <linearGradient id="nxs-p4-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/><stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <linearGradient id="nxs-p4-right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/><stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="400" rx="96" fill="url(#nxs-bg)"/>
+
+  <g transform="translate(0, -10)">
+    <path d="M 172 107 A 95 60 0 0 1 256 70 A 95 60 0 0 1 340 107"
+          fill="none" stroke="#38bdf8" stroke-width="5" stroke-dasharray="9 7" stroke-linecap="round"/>
+
+    <polygon points="176,150 256,120 256,150" fill="url(#nxs-p1-left)"/>
+    <polygon points="256,120 336,150 256,150" fill="url(#nxs-p1-right)"/>
+    <line x1="256" y1="70" x2="256" y2="150" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" filter="url(#nxs-ray-glow)"/>
+    <polygon points="176,150 256,180 256,150" fill="url(#nxs-p1-left)"/>
+    <polygon points="256,180 336,150 256,150" fill="url(#nxs-p1-right)"/>
+
+    <polygon points="198,215 256,190 256,215" fill="url(#nxs-p2-left)"/>
+    <polygon points="256,190 314,215 256,215" fill="url(#nxs-p2-right)"/>
+    <line x1="256" y1="180" x2="256" y2="215" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" filter="url(#nxs-ray-glow)"/>
+    <polygon points="198,215 256,240 256,215" fill="url(#nxs-p2-left)"/>
+    <polygon points="256,240 314,215 256,215" fill="url(#nxs-p2-right)"/>
+
+    <polygon points="220,270 256,250 256,270" fill="url(#nxs-p3-left)"/>
+    <polygon points="256,250 292,270 256,270" fill="url(#nxs-p3-right)"/>
+    <line x1="256" y1="240" x2="256" y2="270" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" filter="url(#nxs-ray-glow)"/>
+    <polygon points="220,270 256,290 256,270" fill="url(#nxs-p3-left)"/>
+    <polygon points="256,290 292,270 256,270" fill="url(#nxs-p3-right)"/>
+
+    <polygon points="240,310 256,298 256,310" fill="url(#nxs-p4-left)"/>
+    <polygon points="256,298 272,310 256,310" fill="url(#nxs-p4-right)"/>
+    <line x1="256" y1="290" x2="256" y2="310" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" filter="url(#nxs-ray-glow)"/>
+    <polygon points="240,310 256,322 256,310" fill="url(#nxs-p4-left)"/>
+    <polygon points="256,322 272,310 256,310" fill="url(#nxs-p4-right)"/>
+
+    <line x1="256" y1="322" x2="256" y2="350" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" filter="url(#nxs-ray-glow)"/>
+
+    <ellipse cx="256" cy="150" rx="4" ry="2" fill="#ffffff" filter="url(#nxs-ray-glow)"/>
+    <ellipse cx="256" cy="215" rx="3.5" ry="1.7" fill="#ffffff" filter="url(#nxs-ray-glow)"/>
+    <ellipse cx="256" cy="270" rx="3" ry="1.5" fill="#ffffff" filter="url(#nxs-ray-glow)"/>
+    <ellipse cx="256" cy="310" rx="2.5" ry="1.2" fill="#ffffff" filter="url(#nxs-ray-glow)"/>
+
+    <g filter="url(#nxs-ray-glow)">
+      <circle cx="256" cy="350" r="16" fill="none" stroke="#38bdf8" stroke-width="3.5"/>
+      <circle cx="256" cy="350" r="7" fill="#38bdf8"/>
+      <circle cx="256" cy="350" r="3" fill="#ffffff"/>
+    </g>
+  </g>
+
+</svg>

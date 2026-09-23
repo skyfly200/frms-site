@@ -236,7 +236,7 @@ function normalizeEvent(ev) {
     time: startUtc ? formatTimeRange(startUtc, endUtc, tz) : null,
     venue,
     summary,
-    image: (ev.logo && ev.logo.url) || null,
+    image: (ev.logo && (ev.logo.original && ev.logo.original.url || ev.logo.url)) || null,
     soldOut,
   };
 }
