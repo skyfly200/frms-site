@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="100" fill="#74ac00"/>
+  <!-- Stylised plant / leaf mark representing iNaturalist -->
+  <!-- Stem -->
+  <line x1="100" y1="155" x2="100" y2="75" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <!-- Left leaf -->
+  <path d="M100 115 Q65 95 60 65 Q85 70 100 115Z" fill="white"/>
+  <!-- Right leaf -->
+  <path d="M100 95 Q135 75 140 45 Q115 50 100 95Z" fill="white"/>
+  <!-- Roots -->
+  <path d="M100 155 Q85 165 75 175" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M100 155 Q100 170 100 180" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M100 155 Q115 165 125 175" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
+</svg>

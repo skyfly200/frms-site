@@ -12,7 +12,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Field Finds | Front Range Mycological Society</title>
+    <title>Resources | Front Range Mycological Society</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,14 +20,14 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Keep nav visibility correct before the Tailwind CDN loads (prevents the menu flashing in then disappearing) */
+        /* Keep nav visibility correct before the Tailwind CDN loads */
         .hidden { display: none; }
         @media (min-width: 768px) {
             .md\:flex { display: flex; }
             .md\:hidden { display: none; }
         }
-        .finds-hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mushroom-chanterelles.jpg');
+        .resources-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mushroom-porcini.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -47,8 +47,8 @@
             <div class="hidden md:flex space-x-8">
                 <a href="index.html" class="nav-link font-medium">Home</a>
                 <a href="about.html" class="nav-link font-medium">About</a>
-                <a href="finds.html" class="nav-link font-medium text-amber-300">Finds</a>
-                <a href="resources.html" class="nav-link font-medium">Resources</a>
+                <a href="finds.html" class="nav-link font-medium">Finds</a>
+                <a href="resources.html" class="nav-link font-medium text-amber-300">Resources</a>
                 <a href="join.html" class="nav-link font-medium">Join</a>
                 <a href="donate.html" class="nav-link font-medium">Donate</a>
             </div>
@@ -68,57 +68,65 @@
     </nav>
 
     <!-- Hero -->
-    <section class="finds-hero text-white py-20 md:py-28">
+    <section class="resources-hero text-white py-20 md:py-28">
         <div class="container mx-auto px-4 text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">Field Finds</h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Fungi we've encountered on forays across Colorado's Front Range.</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Resources</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Tools, platforms, and communities to deepen your mycology practice.</p>
         </div>
     </section>
 
-    <!-- iNaturalist: compact call-to-action linking to the FRMS project; full description lives on resources.html -->
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-4 max-w-3xl text-center" data-aos="fade-up">
-            <div class="text-green-700 mb-3 flex justify-center">
-                <i data-feather="map" class="w-8 h-8"></i>
+    <!-- Nexstrata -->
+    <section class="py-16 bg-green-900 text-white">
+        <div class="container mx-auto px-4 max-w-4xl" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="flex-shrink-0 flex justify-center">
+                    <img src="images/nexstrata-icon.svg" alt="Nexstrata" class="h-28 w-28">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Nexstrata: Mushroom Data Modeling</h2>
+                    <p class="text-green-200 text-lg mb-4">Nexstrata is a data modeling platform built to make sense of mushroom observation data at scale. It pulls in species records from iNaturalist and GBIF, runs them through enrichment pipelines in Google Earth Engine, and trains MaxEnt habitat models to predict where fungi are likely to occur across Colorado's landscapes.</p>
+                    <p class="text-green-200 text-lg mb-4">The platform lets you explore species distribution maps, compare habitat suitability across elevation zones, and dig into the environmental variables (precipitation, soil type, canopy cover) that shape where different fungi thrive. It's designed for both curious members and researchers who want to go deeper than a species list.</p>
+                    <p class="text-green-200 text-lg mb-6">FRMS observation data feeds directly into the models, so every foray find you log on iNaturalist contributes to the science.</p>
+                    <a href="https://nexstrata.frontrangemycosociety.org/map" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition duration-300">Explore the Map</a>
+                </div>
             </div>
-            <h2 class="text-2xl font-bold text-green-800 mb-3">Our Observations on iNaturalist</h2>
-            <p class="text-gray-700 mb-5">Every find we log contributes to a citizen-science record of fungal biodiversity on Colorado's Front Range.</p>
+        </div>
+    </section>
+
+    <!-- iNaturalist -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl text-center" data-aos="fade-up">
+            <div class="mb-6 flex justify-center">
+                <img src="https://static.inaturalist.org/wiki_page_attachments/1419-original.png" alt="iNaturalist" class="h-16" onerror="this.src='images/inaturalist-logo.svg';this.className='h-16 w-16'">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">We document our finds as citizen-science observations on iNaturalist, mapping the fungal biodiversity of the Front Range. Browse our project, add your own sightings, and help build a lasting record of Colorado's fungi.</p>
             <a href="https://www.inaturalist.org/projects/front-range-mycological-society" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">View our iNaturalist Project</a>
         </div>
     </section>
 
-    <!-- Field Finds Gallery -->
+    <!-- Seek -->
     <section class="py-16 bg-amber-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-800 mb-4" data-aos="fade-up">Gallery</h2>
-            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up">Tap any photo to view it larger.</p>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3" data-aos="fade-up">
-                <img src="images/mushroom-marasmius.jpg" alt="Marasmius on a stem" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-moss.jpg" alt="Tiny mushrooms in bright green moss" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-chanterelles.jpg" alt="Freshly foraged chanterelles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-dewdrop.jpg" alt="Mushroom with water droplets on mossy log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-inkcap.jpg" alt="Shaggy ink cap emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-slimemold.jpg" alt="Pink slime mold on log" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-bonnets.jpg" alt="Tiny bonnet mushrooms on leaves" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-pine-branch.jpg" alt="Mushrooms on pine branch" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-pinecone.jpg" alt="Tiny mushrooms on a pine cone" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-morel-single.jpg" alt="Morel mushroom" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-lichen.jpg" alt="Lace lichen on forest floor" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-amanita-button.jpg" alt="Amanita muscaria button emerging" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-russula2.jpg" alt="Russula mushrooms on forest floor" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-tiny-pine.jpg" alt="Tiny mushroom among pine needles" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
-                <img src="images/mushroom-tiny-dark.jpg" alt="Small mushroom emerging from leaf litter" class="gallery-img w-full aspect-square object-cover rounded-lg shadow-sm hover:opacity-90 transition-opacity">
+        <div class="container mx-auto px-4 max-w-3xl text-center" data-aos="fade-up">
+            <div class="mb-6 flex justify-center">
+                <img src="https://static.inaturalist.org/wiki_page_attachments/2559-original.png" alt="Seek by iNaturalist" class="h-16">
             </div>
+            <p class="text-lg text-gray-700 mb-4">Seek is a free mobile app by iNaturalist that uses your camera to identify plants, fungi, and animals in real time, no account required. Its fungal coverage is limited, but it shines for identifying trees and other plants in your surroundings. Knowing your host and indicator species is a key part of finding fungi, so Seek is most useful for reading the habitat around you rather than IDing the mushroom itself.</p>
+            <p class="text-base text-amber-700 bg-amber-100 border border-amber-300 rounded-lg px-5 py-4 mb-6 text-left"><strong>ID disclaimer:</strong> No app can reliably identify mushrooms to a safe-to-eat certainty. Never eat a foraged mushroom based on an app ID alone. When in doubt, defer to an experienced mycologist. Our <a href="https://discord.gg/mKSuJ6w9zr" target="_blank" rel="noopener noreferrer" class="underline hover:text-amber-900">Discord server</a> has an <strong>#id-requests</strong> channel where members can post photos and get a second opinion from the community.</p>
+            <a href="https://www.inaturalist.org/pages/seek_app" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Learn about Seek</a>
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
-        <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-amber-300 focus:outline-none" aria-label="Close">
-            <i data-feather="x" class="w-8 h-8"></i>
-        </button>
-        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
-    </div>
+    <!-- Mushroom Observer -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl text-center" data-aos="fade-up">
+            <div class="text-green-700 mb-4 flex justify-center">
+                <i data-feather="book-open" class="w-10 h-10"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-green-800 mb-4">Mushroom Observer</h2>
+            <p class="text-lg text-gray-700 mb-6">Mushroom Observer is a collaborative database of fungal observations with a strong focus on identification accuracy and scientific documentation. Explore thousands of observations from Colorado and around the world, contribute your own finds, and tap into a community of dedicated mycologists.</p>
+            <a href="https://mushroomobserver.org/" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Visit Mushroom Observer</a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-green-900 text-white py-12">
@@ -164,7 +172,6 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
         var menuToggle = document.getElementById('menu-toggle');
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
@@ -172,37 +179,8 @@
                 if (menu) menu.classList.toggle('hidden');
             });
         }
-
-        // Gallery lightbox
-        (function() {
-            var lb = document.getElementById('lightbox');
-            var lbImg = document.getElementById('lightbox-img');
-            document.querySelectorAll('.gallery-img').forEach(function(img) {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', function() {
-                    lbImg.src = this.src;
-                    lbImg.alt = this.alt;
-                    lb.classList.remove('hidden');
-                    lb.classList.add('flex');
-                    if (window.feather) feather.replace();
-                });
-            });
-            function closeLightbox() {
-                lb.classList.add('hidden');
-                lb.classList.remove('flex');
-            }
-            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-            lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
-        })();
-
-        // Initialize animations and icons (guarded so a blocked CDN can't break the page)
         if (window.AOS) {
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true
-            });
+            AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
         }
         if (window.feather) feather.replace();
     </script>
