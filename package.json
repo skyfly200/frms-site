@@ -5,5 +5,8 @@
   "description": "Front Range Mycological Society website and Netlify serverless functions",
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "test": "node scripts/check-nav.js"
   }
 }
