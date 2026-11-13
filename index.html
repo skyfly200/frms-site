@@ -106,30 +106,53 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-800" data-aos="fade-up">Upcoming Events</h2>
 
-            <!-- Events container: JS replaces the static fallback card below with
-                 live Eventbrite data when the eventbrite-events function responds. -->
-            <div id="events-container" data-aos="fade-up">
-                <!-- Static fallback (shown if the events API is unavailable) -->
-                <div class="max-w-2xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden">
+            <!-- Events hosted outside Eventbrite. Each card hides itself after
+                 its data-event-end time (see script at the bottom of the page). -->
+            <div id="local-events" data-aos="fade-up">
+                <article class="local-event max-w-3xl mx-auto mb-12 bg-amber-50 rounded-lg shadow-md overflow-hidden" data-event-end="2026-11-18T18:30:00-07:00">
                     <div class="bg-green-800 text-white px-6 py-5">
-                        <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Featured Event</p>
-                        <h3 class="text-2xl font-bold">Mushroom Foray</h3>
+                        <p class="text-amber-300 text-sm font-semibold uppercase tracking-wider mb-1">Free Community Talk</p>
+                        <h3 class="text-2xl font-bold">Growing Psilocybin Mushrooms for Colorado's Regulated Market</h3>
+                        <p class="text-green-100 mt-1">with Josh Walker of Lost Garden Labs &amp; Therapeutics</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <p class="flex items-center text-gray-700">
-                                <i data-feather="calendar" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
-                                <span>Sunday, September 13, 2026</span>
-                            </p>
-                            <p class="flex items-center text-gray-700">
-                                <i data-feather="clock" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
-                                <span>12:00 PM (noon)</span>
-                            </p>
+                    <div class="sm:flex">
+                        <a href="images/event-josh-walker-lost-garden.jpg" target="_blank" rel="noopener noreferrer" class="block sm:w-2/5 shrink-0 bg-black">
+                            <img src="images/event-josh-walker-lost-garden.jpg" alt="Event flyer: Josh Walker and the Lost Garden Labs team holding mushrooms. Free entry, November 18, 2026, 5 to 6:30 PM, Nederland, CO." class="w-full h-auto sm:h-full sm:object-contain" loading="lazy" width="720" height="960">
+                        </a>
+                        <div class="p-6">
+                            <div class="space-y-3 mb-4">
+                                <p class="flex items-center text-gray-700">
+                                    <i data-feather="calendar" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
+                                    <span>Wednesday, November 18, 2026</span>
+                                </p>
+                                <p class="flex items-center text-gray-700">
+                                    <i data-feather="clock" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
+                                    <span>5:00 – 6:30 PM</span>
+                                </p>
+                                <p class="flex items-center text-gray-700">
+                                    <i data-feather="map-pin" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
+                                    <span>Nederland Public Library, Nederland, CO 80466</span>
+                                </p>
+                                <p class="flex items-center text-gray-700">
+                                    <i data-feather="users" class="w-5 h-5 mr-3 text-green-700 shrink-0"></i>
+                                    <span>Free and open to the public</span>
+                                </p>
+                            </div>
+                            <p class="text-gray-700 mb-3">Josh Walker of Lost Garden Labs &amp; Therapeutics shares what he has learned from 26 years of growing mushrooms, including insights from supplying psilocybin mushrooms to 23 healing centers across Colorado.</p>
+                            <p class="text-gray-700 mb-6">How do psilocybin mushrooms produced for the regulated market differ from home grows? Come find out. Hosted by FRMS.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://www.google.com/maps/search/?api=1&amp;query=Nederland+Community+Library+Nederland+CO+80466" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300">Get Directions</a>
+                                <a href="https://lostgardenlabs.com" target="_blank" rel="noopener noreferrer" class="inline-block bg-transparent hover:bg-green-700 hover:text-white text-green-800 font-bold py-3 px-6 border-2 border-green-700 rounded-full transition duration-300">Lost Garden Labs</a>
+                                <a href="https://www.instagram.com/lostgardennaturalmedicine/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-green-800 hover:text-green-600 font-semibold py-3 px-2" aria-label="Lost Garden Labs on Instagram"><i data-feather="instagram" class="w-5 h-5 mr-2"></i>@lostgardennaturalmedicine</a>
+                            </div>
                         </div>
-                        <a href="https://www.eventbrite.com/e/mushroom-foray-front-range-mycological-society-tickets-2000199002059" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Get Tickets on Eventbrite</a>
                     </div>
-                </div>
+                </article>
             </div>
+
+            <!-- Events container: filled with live Eventbrite data when the
+                 eventbrite-events function responds; stays empty otherwise. -->
+            <div id="events-container" data-aos="fade-up"></div>
 
             <!-- Full Calendar -->
             <div class="flex justify-center" data-aos="fade-up">
@@ -314,8 +337,19 @@
         if (window.feather) feather.replace();
     </script>
 
+    <!-- Hide hand-listed events once they have ended. -->
+    <script>
+        (function() {
+            var now = Date.now();
+            document.querySelectorAll('.local-event[data-event-end]').forEach(function(el) {
+                var end = Date.parse(el.getAttribute('data-event-end'));
+                if (!isNaN(end) && end < now) el.remove();
+            });
+        })();
+    </script>
+
     <!-- Populate Upcoming Events from the Eventbrite API (Netlify function).
-         Falls back to the static card already in #events-container on any error. -->
+         Leaves #events-container empty on any error. -->
     <script>
         (function() {
             var container = document.getElementById('events-container');
@@ -368,11 +402,11 @@
             fetch('/.netlify/functions/eventbrite-events')
                 .then(function(res) { return res.ok ? res.json() : null; })
                 .then(function(data) {
-                    if (!data || !data.events || !data.events.length) return; // keep fallback
+                    if (!data || !data.events || !data.events.length) return;
                     container.innerHTML = data.events.map(cardHtml).join('');
                     if (window.feather) feather.replace();
                 })
-                .catch(function() { /* keep the static fallback card */ });
+                .catch(function() { /* leave the container empty */ });
         })();
     </script>
 </body>
